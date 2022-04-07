@@ -1,0 +1,23 @@
+[
+  {
+    "name": "questions",
+    "path": "/questions",
+    "component": "/Users/colinzang/Desktop/chooseRoom/pages/questions.vue",
+    "chunkName": "pages/questions",
+    "_name": "_2e88765a"
+  },
+  {
+    "name": "reverb",
+    "path": "/reverb",
+    "component": "/Users/colinzang/Desktop/chooseRoom/pages/reverb.vue",
+    "chunkName": "pages/reverb",
+    "_name": "_3d561e95"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/colinzang/Desktop/chooseRoom/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_25e5d5df"
+  }
+]
