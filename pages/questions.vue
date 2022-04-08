@@ -17,7 +17,9 @@
             <v-icon>{{ icons.mdiClose }}</v-icon
             >Clear All</v-btn
           >
+          
           <v-divider></v-divider>
+
           <v-card-text>
             Performance Type: {{ performanceType }} <br />
             Room Capacity: {{ roomCapacity }} <br />
@@ -25,6 +27,7 @@
             Require Piano: {{ requirePiano }} <br />
             Require PA: {{ requirePA }} <br />
           </v-card-text>
+
           <v-btn style="width:calc(100% - 20px);margin-left:10px;margin-bottom:20px;margin-top:20px"> Submit </v-btn>
         </v-card>
       </div>

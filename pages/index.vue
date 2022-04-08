@@ -3,8 +3,8 @@
     <v-container style="height: 100%">
       <div class="center">
         <h1
+          class="introTitle"
           style="
-            font-size: 5rem;
             font-weight: 600;
             color: white;
             text-shadow: 2px 2px 14px rgba(0, 0, 0, 0.2);
@@ -15,10 +15,10 @@
         <p style="color: white; padding-bottom: 20px">
           A Project from University of Rochester AME292, 2022 Spring.
         </p>
-        <v-btn elevation="2" x-large onclick="window.location='/questions'">
+        <v-btn elevation="2" class="btnMedia" x-large onclick="window.location='/questions'">
           Questions Demo</v-btn
         >
-        <v-btn elevation="2" x-large onclick="window.location='/reverb'">
+        <v-btn elevation="2" class="btnMedia" x-large onclick="window.location='/reverb'">
           Reverb Demo</v-btn
         >
       </div>
@@ -65,13 +65,39 @@ body {
   }
 }
 
-.center {
-  margin: 0;
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+/* on small screens, make the text smaller */
+@media only screen and (max-width: 600px) {
+  .center {
+    text-align: left;
+    margin: 0;
+    padding:30px;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .introTitle {
+    font-size: 2em;
+  }
+
+  .btnMedia {
+    width:200px;
+    height:30px;
+    margin-bottom: 20px;
+  }
+}
+
+/* on large screens, text normal */
+@media only screen and (min-width: 600px) {
+  .center {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
 }
 </style>
