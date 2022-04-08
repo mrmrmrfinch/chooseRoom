@@ -99,5 +99,8 @@ body {
     transform: translate(-50%, -50%);
     text-align: center;
   }
+    .introTitle {
+    font-size: 5em;
+  }
 }
 </style>
