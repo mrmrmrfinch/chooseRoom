@@ -1,154 +1,95 @@
 <template>
-  <!-- Sizes your content based upon application components -->
-  <v-main>
-    <!-- Provides the application the proper gutter -->
-    <v-container fluid>
-      <p class="pageTitle">Question demo.</p>
-      <a href="/"> Back to home </a>
-      <div style="position: fixed; right: 10px; top: 10px">
-        <v-card elevation="4" width="400">
-          <v-card-title> Your Selections </v-card-title>
-          <v-btn
-            small
-            elevation="0"
-            v-on:click="clearAllSelections"
-            style="position: absolute; top: 20px; right: 10px"
-          >
-            <v-icon>{{ icons.mdiClose }}</v-icon
-            >Clear All</v-btn
-          >
-          
-          <v-divider></v-divider>
+  <v-app>
+    <!-- Sizes your content based upon application components -->
+    <v-main>
+      <!-- Provides the application the proper gutter -->
+      <v-container fluid>
+        <a href="/"> Back to home </a>
+        <v-container style="text-align:center">
+        <h1 >Answer these questions to help us better understand your needs.</h1>
+        </v-container>
+        <!-- would automatically bind to questions -->
 
-          <v-card-text>
-            Performance Type: {{ performanceType }} <br />
-            Room Capacity: {{ roomCapacity }} <br />
-            Dry or Wet: {{ dryOrWet }} <br />
-            Require Piano: {{ requirePiano }} <br />
-            Require PA: {{ requirePA }} <br />
-          </v-card-text>
-
-          <v-btn style="width:calc(100% - 20px);margin-left:10px;margin-bottom:20px;margin-top:20px"> Submit </v-btn>
-        </v-card>
-      </div>
-      <div style="max-width: 500px">
-        <v-radio-group row v-model="performanceType">
-          <template v-slot:label>
-            <div>What will you be performing?</div>
-          </template>
-          <v-radio value="speech">
-            <template v-slot:label>
-              <div>Speech/theater</div>
-            </template>
-          </v-radio>
-          <v-radio value="music">
-            <template v-slot:label>
-              <div>Music (instrumental)</div>
-            </template>
-          </v-radio>
-          <v-radio value="acappella">
-            <template v-slot:label>
-              <div>A Cappella</div>
-            </template>
-          </v-radio>
-        </v-radio-group>
-
-        <v-radio-group row v-model="roomCapacity">
-          <template v-slot:label>
-            <div>
-              What is the required room capacity (performers and audience)?
+        <div class="questionCard" v-for="(item, index) in questionsMap" :key="index">
+          <p class="questionIndex">Question {{ index + 1 }} / {{questionsMap.length}}</p>
+          <p class="questionTitle"> {{ item.title }}</p>
+          <p class="questionSubtitle">
+            {{item.subtitle}}
+          </p>
+          <!-- If multiple choice -->
+          <div v-if="item.type == 'multipleChoice'">
+            <v-row style="justify-content: center;">
+              <v-btn plain class="questionChoiceBtn" v-for="choice in item.choices" :key="choice.title" v-on:click="setQuestionChoice(index, choice.title, choice.weight)" :class="(item.selection === choice.title? 'questionBtnSelected' : 'questionBtnNormal')">
+                <div>
+                  <span class="material-icons questionIcon"> {{choice.icon}} </span
+                  ><br />{{choice.title}}
+                </div></v-btn
+              >
+            </v-row>
+          </div>
+          <!-- If slider -->
+          <div v-if="item.type == 'slider'" style="width:100%">
+            <v-container>
+              <v-row>
+                <v-col cols="2" style="text-align:right"><p class="questionSliderPrompt" >
+                  <span class="material-icons questionSliderIcon">{{item.negativeChoice.icon}}</span>
+                  {{item.negativeChoice.title}}</p></v-col>
+                <v-col cols="8"> <v-slider max="100" min="-100" default="0" v-model="item.value"></v-slider></v-col>
+                <v-col cols="2">
+                  <p class="questionSliderPrompt" style="text-align:left">{{item.positiveChoice.title}}
+                    <span class="material-icons questionSliderIcon" style="width:24px">{{item.positiveChoice.icon}}</span>
+                    </p></v-col>
+              </v-row>
+            </v-container>
             </div>
-          </template>
-          <v-radio value="1-20">
-            <template v-slot:label>
-              <div>1-20</div>
-            </template>
-          </v-radio>
-          <v-radio value="25-50">
-            <template v-slot:label>
-              <div>25-50</div>
-            </template>
-          </v-radio>
-          <v-radio value="50+">
-            <template v-slot:label>
-              <div>50+</div>
-            </template>
-          </v-radio>
-        </v-radio-group>
+        </div>
 
-        <v-radio-group row v-model="dryOrWet">
-          <template v-slot:label>
-            <div>Would you prefer a more dry or wet sounding room?</div>
-          </template>
-          <v-radio value="dry">
-            <template v-slot:label>
-              <div>Dry</div>
-            </template>
-          </v-radio>
-          <v-radio value="wet">
-            <template v-slot:label>
-              <div>Wet</div>
-            </template>
-          </v-radio>
-          <v-radio value="No preference">
-            <template v-slot:label>
-              <div>No preference</div>
-            </template>
-          </v-radio>
-        </v-radio-group>
-
-        <v-radio-group row v-model="requirePiano">
-          <template v-slot:label>
-            <div>Do you need a piano?</div>
-          </template>
-          <v-radio value="yes">
-            <template v-slot:label>
-              <div>Yes</div>
-            </template>
-          </v-radio>
-          <v-radio value="no">
-            <template v-slot:label>
-              <div>No</div>
-            </template>
-          </v-radio>
-        </v-radio-group>
-
-        <v-radio-group row v-model="requirePA">
-          <template v-slot:label>
-            <div>Will you require a PA system?</div>
-          </template>
-          <v-radio value="yes">
-            <template v-slot:label>
-              <div>Yes</div>
-            </template>
-          </v-radio>
-          <v-radio value="no">
-            <template v-slot:label>
-              <div>No</div>
-            </template>
-          </v-radio>
-          <v-radio value="No preference">
-            <template v-slot:label>
-              <div>No preference</div>
-            </template>
-          </v-radio>
-        </v-radio-group>
-      </div>
-    </v-container>
-  </v-main>
+          <v-container fluid style="margin-top:40px;">
+            <v-container style="text-align:center;margin-bottom:30px;">
+          <h1>
+            How much does these questions matter in your decision making
+            process?
+          </h1>
+            </v-container>
+            <div style="width:100%;">
+          <div class="questionWeightSlider" v-for="(item, index) in questionsMap" :key=index>
+            <div v-if="item.type == 'multipleChoice'">
+              <v-row>
+                <v-col cols="4" md="2">
+              <p v-if="item.selection != ''">{{index + 1}}. {{item.shortTitle}}: {{item.selection}}</p>
+              <p v-if="item.selection == ''">{{index + 1}}. {{item.shortTitle}}: Not Selected</p>
+                </v-col>
+                <v-col cols="8" md="10">
+              <v-slider max="100" min="0" v-model="item.questionWeight"></v-slider>
+                </v-col>
+              </v-row>
+            </div>
+            <div v-if="item.type == 'slider'">
+              <v-row>
+                <v-col cols="4" md="2">
+              <p>{{index + 1}}. {{item.shortTitle}}: {{item.value / 2 + 50}}%</p>
+                </v-col>
+                <v-col cols="8" md="10">
+              <v-slider max="100" min="0" v-model="item.questionWeight"></v-slider>
+              </v-col>
+              </v-row>
+            </div>
+          </div>
+          </div>
+          </v-container>
+        </div>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import { mdiClose } from "@mdi/js";
-
+const data = require("./questions.json");
 export default {
   name: "QuestionPage",
   data() {
     return {
-      // icons
-      icons: {
-        mdiClose,
-      },
+      questionsMap: data,
       // Multiple Choice Questions
       performanceType: "",
       roomCapacity: "",
@@ -167,14 +108,95 @@ export default {
       this.requirePiano = "";
       this.requirePA = "";
     },
+
+    // set the question's choice.
+    setQuestionChoice(question, choice, weight) {
+      this.questionsMap[question].selection = choice;
+      this.questionsMap[question].selectionWeight = weight;
+    },
   },
 };
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "Manrope";
+  src: url("/manrope.woff2") format("woff2");
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
+  font-family: "Manrope", sans-serif;
+}
+
+.questionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px dotted #ccc;
+}
+
+.questionTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.questionSubtitle {
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.questionChoiceBtn {
+  width: 200px;
+  min-height: 160px;
+  margin: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.questionBtnNormal {
+  color: black;
+  background-color: #00bcd4;
+  border-radius: 5px;
+  outline: none;
+}
+
+.questionBtnSelected {
+  color:white;
+  background-color: green;
+  border-radius: 10px;
+}
+
+.questionIcon {
+  font-size: 80px;
+  margin-bottom: 10px;
+}
+
+.questionSliderPrompt {
+  font-size: 19px;
+  display: flex;
+  justify-content: center;
+}
+
+.quetsionSliderIcon {
+  font-size: 20px;
+}
+
+.questionWeightSlider {
+  width: 100%;
+  padding-left:20px;
+  padding-right:20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: right;
 }
 </style>

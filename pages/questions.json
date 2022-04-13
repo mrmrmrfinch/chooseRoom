@@ -1,0 +1,46 @@
+[
+    {
+        "type": "multipleChoice",
+        "title": "What will you be performing?",
+        "shortTitle": "Perform Type",
+        "subtitle": "We use 'clarity' as to measure how suitable each performance content should be used in a room.",
+        "choices": [
+            {
+                "title": "Speech/Theater",
+                "icon": "theater_comedy",
+                "weight": 0
+            },
+            {
+                "title": "Music",
+                "icon": "music_note",
+                "weight": 0
+            },
+            {
+                "title": "Acapella",
+                "icon": "mic_external_on",
+                "weight": 0
+            }
+        ],
+        "selection": "",
+        "selectionWeight": 0,
+        "questionWeight": 50,
+        "linkedValue": "clarity"
+    },
+    {
+        "type": "slider",
+        "title": "Would you prefer a more dry or wet sounding room?",
+        "shortTitle": "Dry/Wet",
+        "subtitle": "'Dry' and 'Wet' are measured using T20.",
+        "negativeChoice": {
+            "title": "Dry",
+            "icon": "mic_off"
+        },
+        "positiveChoice": {
+            "title": "Wet",
+            "icon": "mic_on"
+        },
+        "value": 0,
+        "questionWeight": 50,
+        "linkedValue": "t20"
+    }
+]
