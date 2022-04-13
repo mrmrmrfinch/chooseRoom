@@ -26,6 +26,7 @@
         "questionWeight": 50,
         "linkedValue": "clarity"
     },
+
     {
         "type": "slider",
         "title": "Would you prefer a more dry or wet sounding room?",

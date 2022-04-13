@@ -1,0 +1,22 @@
+[
+    {
+        "name": "SloanA",
+        "clarity": 1.97,
+        "t20": 1.33
+    },
+    {
+        "name": "SloanB",
+        "clarity": 1,
+        "t20": 0.31
+    },
+    {
+        "name": "SloanC",
+        "clarity": -1.07,
+        "t20": 1.99
+    },
+    {
+        "name": "SloanD",
+        "clarity": 0,
+        "t20": 2.25
+    }
+]
