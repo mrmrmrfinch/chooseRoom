@@ -34,7 +34,7 @@
                 <v-col cols="2" style="text-align:right"><p class="questionSliderPrompt" >
                   <span class="material-icons questionSliderIcon">{{item.negativeChoice.icon}}</span>
                   {{item.negativeChoice.title}}</p></v-col>
-                <v-col cols="8"> <v-slider max="100" min="-100" default="0" v-model="item.value"></v-slider></v-col>
+                <v-col cols="8"> <v-slider max="100" min="-100" default="0" v-model="item.selectionWeight"></v-slider></v-col>
                 <v-col cols="2">
                   <p class="questionSliderPrompt" style="text-align:left">{{item.positiveChoice.title}}
                     <span class="material-icons questionSliderIcon" style="width:24px">{{item.positiveChoice.icon}}</span>
@@ -67,7 +67,7 @@
             <div v-if="item.type == 'slider'">
               <v-row>
                 <v-col cols="4" md="2">
-              <p>{{index + 1}}. {{item.shortTitle}}: {{item.value / 2 + 50}}%</p>
+              <p>{{index + 1}}. {{item.shortTitle}}: {{item.selectionWeight / 2 + 50}}%</p>
                 </v-col>
                 <v-col cols="8" md="10">
               <v-slider max="100" min="0" v-model="item.questionWeight"></v-slider>
@@ -76,6 +76,7 @@
             </div>
           </div>
           </div>
+          <v-btn style="width:100%;height:50px" v-on:click="submitPage">submit</v-btn>
           </v-container>
         </div>
       </v-container>
@@ -113,6 +114,48 @@ export default {
     setQuestionChoice(question, choice, weight) {
       this.questionsMap[question].selection = choice;
       this.questionsMap[question].selectionWeight = weight;
+    },
+
+    // submit the page.
+    submitPage() {
+      // check if all questions are answered.
+      let allAnswered = true;
+      let unanswered = [];
+      for (let i = 0; i < this.questionsMap.length; i++) {
+        if (this.questionsMap[i].selection == "") {
+          // flag all unanswered questions' indices.
+          unanswered.push(i + 1);
+          allAnswered = false;
+        }
+      }
+      // convert unanswered questions to string.
+      let unansweredString = "";
+      for (let i = 0; i < unanswered.length; i++) {
+        if (i == 0) {
+          unansweredString += "Question " + unanswered[i];
+        } else {
+          unansweredString += ", " + unanswered[i];
+        }
+      }
+      // if not all answered, alert the user.
+      if (!allAnswered) {
+        alert("You didn't answer: " + unansweredString + " Please answer all questions.");
+        return;
+      } else {
+      // write to local storage, page has been submited.
+      localStorage.setItem("submit", true);
+      this.$router.push("/reverb");
+      }
+    },
+  },
+
+  // when questionMap is updated, write to local storage.
+  watch: {
+    questionsMap: {
+      handler: function (val, oldVal) {
+        localStorage.setItem("questionsMap", JSON.stringify(val));
+      },
+      deep: true,
     },
   },
 };

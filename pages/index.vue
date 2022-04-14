@@ -16,10 +16,7 @@
           A Project from University of Rochester AME292, 2022 Spring.
         </p>
         <v-btn elevation="2" class="btnMedia" x-large onclick="window.location='/questions'">
-          Questions Demo</v-btn
-        >
-        <v-btn elevation="2" class="btnMedia" x-large onclick="window.location='/reverb'">
-          Reverb Demo</v-btn
+          Get Started</v-btn
         >
       </div>
     </v-container>

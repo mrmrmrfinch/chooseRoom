@@ -8,12 +8,12 @@
             {
                 "title": "Speech/Theater",
                 "icon": "theater_comedy",
-                "weight": 0
+                "weight": 100
             },
             {
                 "title": "Music",
                 "icon": "music_note",
-                "weight": 0
+                "weight": -100
             },
             {
                 "title": "Acapella",
@@ -40,7 +40,7 @@
             "title": "Wet",
             "icon": "mic_on"
         },
-        "value": 0,
+        "selectionWeight": 0,
         "questionWeight": 50,
         "linkedValue": "t20"
     }
