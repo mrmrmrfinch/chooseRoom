@@ -183,6 +183,16 @@ export default {
           (weight / 100) *
           (questionWeight / 100);
       }
+      // normalize probabilityMap with largest value 1.
+      let max = 0;
+      for (let room in vm.probabilityMap) {
+        if (vm.probabilityMap[room].prob > max) {
+          max = vm.probabilityMap[room].prob;
+        }
+      }
+      for (let room in vm.probabilityMap) {
+        vm.probabilityMap[room].prob /= max;
+      }
     }
 
     // find the best room
@@ -194,20 +204,15 @@ export default {
       }
     }
 
-    // normalize vm.probabilityMap, make min probability 0 and max probability 1.
-    let min = 1;
+    // normalize vm.probabilityMap, make max prob 1.
     let max = 0;
     for (let room in vm.probabilityMap) {
-      if (vm.probabilityMap[room].prob < min) {
-        min = vm.probabilityMap[room].prob;
-      }
       if (vm.probabilityMap[room].prob > max) {
         max = vm.probabilityMap[room].prob;
       }
     }
     for (let room in vm.probabilityMap) {
-      vm.probabilityMap[room].prob =
-        (vm.probabilityMap[room].prob - min) / (max - min);
+      vm.probabilityMap[room].prob /= max;
     }
 
     // sort the probability map from high prob to low prob, with same data structure
