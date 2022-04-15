@@ -179,19 +179,9 @@ export default {
           };
         }
         vm.probabilityMap[roomName].prob +=
-          this.roomsMap[room][linkedValue] *
+          Math.tanh(this.roomsMap[room][linkedValue]) *
           (weight / 100) *
           (questionWeight / 100);
-      }
-      // normalize probabilityMap with largest value 1.
-      let max = 0;
-      for (let room in vm.probabilityMap) {
-        if (vm.probabilityMap[room].prob > max) {
-          max = vm.probabilityMap[room].prob;
-        }
-      }
-      for (let room in vm.probabilityMap) {
-        vm.probabilityMap[room].prob /= max;
       }
     }
 
@@ -202,17 +192,6 @@ export default {
         bestProb = vm.probabilityMap[room].prob;
         vm.bestRoom = vm.probabilityMap[room].name;
       }
-    }
-
-    // normalize vm.probabilityMap, make max prob 1.
-    let max = 0;
-    for (let room in vm.probabilityMap) {
-      if (vm.probabilityMap[room].prob > max) {
-        max = vm.probabilityMap[room].prob;
-      }
-    }
-    for (let room in vm.probabilityMap) {
-      vm.probabilityMap[room].prob /= max;
     }
 
     // sort the probability map from high prob to low prob, with same data structure
@@ -227,6 +206,28 @@ export default {
         return b.prob - a.prob;
       }
     );
+
+    // use sigmond function to squash the sorted probability map
+    let squash = function (x) {
+      return 1 / (1 + Math.exp(-x));
+    };
+    for (let room in vm.sortedProbabilityMap) {
+      vm.sortedProbabilityMap[room].prob = squash(
+        vm.sortedProbabilityMap[room].prob
+      );
+    }
+
+    // normalize the sorted probability map so the largest value is 1.
+    let max = 0;
+    for (let room in vm.sortedProbabilityMap) {
+      if (vm.sortedProbabilityMap[room].prob > max) {
+        max = vm.sortedProbabilityMap[room].prob;
+      }
+    }
+    for (let room in vm.sortedProbabilityMap) {
+      vm.sortedProbabilityMap[room].prob /= max;
+    }
+  
 
     // get the next two best room and their probability
     vm.nextBestRoom = vm.sortedProbabilityMap[1].name;
