@@ -69,3 +69,34 @@ This directory contains your Vuex store files. Creating a file in this directory
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
 
 ### How to do weights
+
+"Feature" is like an input variable. Features include Clarity, T20, room size, etc.
+Every room should all have the same features. 
+
+"Selection Weight" is associated with choice. When user make a choice, it indicates the preference of user on a certain value. This is pre-determined by us. Selection Weight is a number between 100 and -100.
+
+"Question Weight" is associated with questions. It indicates the how much the user "values" this particular question, i.e. this particular value. Question Weight is a number between 100 and -100.
+
+So how do we calculate the probability map? we use the following scheme:
+
+Step 1: Initialize all room with probability 1;
+
+Step 2: For every room:
+            For every feature:
+                Probability of Room += tanh(feature input value) * (Selection Weight / 100) * (Question Weight / 100);
+
+The reason we use tanh function here, is to squash the input value into a scale of -1 to 1, so they are "normalized". This would help with reducing drastic changes in probability estimation.
+
+After step 2, we have the probability for each room. Now we need to find a way to display this to the user in a useful way.
+
+Step 3: Sort the probability map from high to low.
+
+Step 4: Use sigmoid function to squash probability:
+    For every probability:
+        Probability = 1 / (1 + exp(Probability));
+
+Using sigmoid could squash all values to 0 and 1. Also, we would anticipate all probabilities here to distribute around 0, so it's somewhat linear; the edge probability would be squashed harder here, so that it won't affect the readability of the results of next step too much.
+
+Step 5: Normalization. Normalize the sorted probability map to make the largest probability 1.
+
+Now, we could read from the sorted probability map.
