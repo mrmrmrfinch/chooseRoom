@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Speech",
+        "url": "speech.wav"
+    },
+    {
+        "name": "Music",
+        "url": "music.wav"
+    },
+    {
+        "name": "Violin",
+        "url": "violin.wav"
+    },
+    {
+        "name": "Cello",
+        "url": "cello.wav"
+    },
+    {
+        "name": "Trumpet",
+        "url": "trumpet.wav"
+    }
+]

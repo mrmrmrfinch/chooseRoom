@@ -1,15 +1,22 @@
 <template>
   <v-app>
     <!-- Sizes your content based upon application components -->
-    <v-main>
+    <v-main class="appMain">
+      <div class='ripple-background' style="position:fixed;top:100%">
+        <div class='circle xxlarge shade1'></div>
+        <div class='circle xlarge shade2'></div>
+        <div class='circle large shade3'></div>
+        <div class='circle mediun shade4'></div>
+        <div class='circle small shade5'></div>
+      </div>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        <a href="/"> Back to home </a>
-        <v-container style="text-align:center">
+        <!-- <a href="/"> Back to home </a> -->
+        <v-container class="pageTitle">
         <h1 >Answer these questions to help us better understand your needs.</h1>
         </v-container>
         <!-- would automatically bind to questions -->
-
+        <div class="questions">
         <div class="questionCard" v-for="(item, index) in questionsMap" :key="index">
           <p class="questionIndex">Question {{ index + 1 }} / {{questionsMap.length}}</p>
           <p class="questionTitle"> {{ item.title }}</p>
@@ -46,10 +53,12 @@
 
           <v-container fluid style="margin-top:40px;">
             <v-container style="text-align:center;margin-bottom:30px;">
-          <h1>
-            How much does these questions matter in your decision making
-            process?
-          </h1>
+              <div style="display:flex; justify-content:center; width:100%">
+              <h1 style="max-width:600px">
+                How much does these questions matter in your decision making
+                process?
+              </h1>
+              </div>
             </v-container>
             <div style="width:100%;">
           <div class="questionWeightSlider" v-for="(item, index) in questionsMap" :key=index>
@@ -78,6 +87,7 @@
           </div>
           <v-btn style="width:100%;height:50px" v-on:click="submitPage">submit</v-btn>
           </v-container>
+        </div>
         </div>
       </v-container>
     </v-main>
@@ -139,12 +149,16 @@ export default {
       }
       // if not all answered, alert the user.
       if (!allAnswered) {
-        alert("You didn't answer: " + unansweredString + " Please answer all questions.");
+        alert(
+          "You didn't answer: " +
+            unansweredString +
+            " Please answer all questions."
+        );
         return;
       } else {
-      // write to local storage, page has been submited.
-      localStorage.setItem("submit", true);
-      this.$router.push("/reverb");
+        // write to local storage, page has been submited.
+        localStorage.setItem("submit", true);
+        this.$router.push("/reverb");
       }
     },
   },
@@ -172,6 +186,37 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Manrope", sans-serif;
+  background-color: #3399ff;
+}
+
+.appMain {
+  margin: 0;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #3399ff;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.questions {
+  position: absolute;
+  right:0;
+  margin:20px;
+  padding: 40px;
+  width: 70%;
+  background-color:white;
+  border-radius:10px;
+  padding:10px;
+  max-height: calc(100% - 40px);
+  overflow: scroll;
+}
+
+.pageTitle {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  width:calc(30% - 70px);
+  font-size: 1.2rem;
 }
 
 .questionCard {
@@ -214,7 +259,7 @@ body {
 }
 
 .questionBtnSelected {
-  color:white;
+  color: white;
   background-color: green;
   border-radius: 10px;
 }
@@ -230,16 +275,92 @@ body {
   justify-content: center;
 }
 
-.quetsionSliderIcon {
+.questionSliderIcon {
   font-size: 20px;
 }
 
 .questionWeightSlider {
   width: 100%;
-  padding-left:20px;
-  padding-right:20px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: right;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: ripple 15s infinite;
+  box-shadow: 0px 0px 1px 0px #508fb9;
+}
+
+.small {
+  width: 200px;
+  height: 200px;
+  left: -100px;
+  bottom: -100px;
+}
+
+.medium {
+  width: 400px;
+  height: 400px;
+  left: -200px;
+  bottom: -200px;
+}
+
+.large {
+  width: 600px;
+  height: 600px;
+  left: -300px;
+  bottom: -300px;
+}
+
+.xlarge {
+  width: 800px;
+  height: 800px;
+  left: -400px;
+  bottom: -400px;
+}
+
+.xxlarge {
+  width: 1000px;
+  height: 1000px;
+  left: -500px;
+  bottom: -500px;
+}
+
+.shade1 {
+  opacity: 0.1;
+}
+.shade2 {
+  opacity: 0.2;
+}
+
+.shade3 {
+  opacity: 0.3;
+}
+
+.shade4 {
+  opacity: 0.4;
+}
+
+.shade5 {
+  opacity: 0.5;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(0.8);
+  }
 }
 </style>

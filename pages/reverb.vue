@@ -13,29 +13,56 @@
             likely).
           </p>
         </v-container>
+        <v-container style="width:80%;margin-left:10%">
         <canvas id="probChart" width="400" height="100"></canvas>
-        <div style="margin-top: 30px">
-          <v-file-input
-            label="Select Your Audio File"
-            outlined
-            dense
-            @change="onAudioFileChange"
-          ></v-file-input>
-          <v-file-input
-            label="Select Your IR File"
-            outlined
-            dense
-            @change="onIRFileChange"
-          ></v-file-input>
-          <v-btn elevation="4" v-on:click="togglePlay"> Toggle Play</v-btn>
-          <v-container class="px-0" fluid>
-            <v-switch
-              inset
-              v-model="convolveSwitch"
-              :label="`Convolve: ${convolveSwitch.toString()}`"
-            ></v-switch>
-          </v-container>
-        </div>
+        </v-container>
+
+        <v-container fluid style="text-align: center; margin-top: 50px">
+          <h1>You could hear how the room sounds here.</h1>
+          <v-row
+            align="center"
+            style="padding-left: 10%; padding-right: 10%; padding-top: 20px;"
+          >
+            <v-col class="d-flex" cols="12" sm="5">
+              <v-select
+                :items="drySoundsArray"
+                @change="onAudioFileChange"
+                label="Select a dry sound to try"
+                solo
+              ></v-select>
+            </v-col>
+
+            <v-col class="d-flex" cols="12" sm="5">
+              <v-select
+                :items="IRArray"
+                @change="onIRFileChange"
+                label="Select a room to try"
+                solo
+              ></v-select>
+            </v-col>
+
+            <v-col class="d-flex" cols="12" sm="2">
+              <v-btn
+                elevation="4"
+                v-on:click="togglePlay"
+                style="width: 100%; margin-top: -30px; height:46px"
+              >
+                Toggle Play</v-btn
+              >
+            </v-col>
+          </v-row>
+          <v-row align="center">
+            <v-col class="d-flex" cols="12" sm="6">
+              <v-container class="px-0" fluid>
+                <v-switch
+                  inset
+                  v-model="convolveSwitch"
+                  :label="`Convolve: ${convolveSwitch.toString()}`"
+                ></v-switch>
+              </v-container>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-container>
     </v-app>
   </v-main>
@@ -44,7 +71,13 @@
 <script>
 import * as Tone from "tone";
 import Chart from "chart.js/auto";
+
+// this is where we would store the audio files for IR and dry sounds
+const roomIRLocation = "../static/roomIR";
+const drySoundsLocation = "../static/drySounds";
+
 const data = require("./rooms.json");
+const dry = require("./drySounds.json");
 
 window.onclick = function () {
   Tone.start();
@@ -62,13 +95,16 @@ export default {
       convolveSwitch: true,
       questionsMap: [],
       roomsMap: data,
+      drySounds: dry,
+      drySoundsArray: [],
       // bestRoom Calculated
       bestRoom: "",
       probabilityMap: {},
       sortedProbabilityMap: {},
+      IRArray: [],
       // second bests
       nextBestRoom: "",
-      nextBestRoomProb: 0,
+      nextBestProb: 0,
       nextNextBestRoom: "",
       nextNextBestRoomProb: 0,
     };
@@ -108,38 +144,63 @@ export default {
           console.log("stopped");
         } else {
           this.player.start();
-          console.log("start");
-          console.log(this.player);
         }
       } else {
         console.log("no file selected");
       }
     },
-    onAudioFileChange(fileURL) {
+
+    onAudioFileChange(fileName) {
+      let fileURL = "";
+
+      // get fileURL from fileName in drySounds
+      for (let i = 0; i < this.drySounds.length; i++) {
+        if (this.drySounds[i].name === fileName) {
+          fileURL = drySoundsLocation + "/" + this.drySounds[i].url;
+        }
+      }
       // stop audio on change if the audio is playing.
       if (this.player !== null && this.player.state === "started") {
         this.player.stop();
       }
-      if (fileURL) {
-        this.audioURL = URL.createObjectURL(fileURL);
-        this.player = new Tone.Player({
-          url: this.audioURL,
-          loop: true,
-          volume: 6,
-        });
+
+      if (fileURL !== "") {
+        this.audioURL = fileURL;
+        if (this.audioURL !== "") {
+          this.player = new Tone.Player({
+            url: this.audioURL,
+            loop: true,
+            volume: 6,
+          });
+        } else {
+          this.player.stop();
+          console.log("cannot get audioURL: " + this.audioURL);
+        }
       } else {
         this.player.stop();
+        console.log("no dry audio file selected");
       }
     },
-    onIRFileChange(fileURL) {
+    onIRFileChange(fileName) {
+      let fileURL = "";
+
+      // get fileURL from fileName in roomsMap
+      for (let i = 0; i < this.roomsMap.length; i++) {
+        if (this.roomsMap[i].name === fileName) {
+          fileURL = this.roomsMap[i].IRurl;
+        }
+      }
       if (fileURL) {
-        this.IRURL = URL.createObjectURL(fileURL);
+        this.IRURL = roomIRLocation + "/" + fileURL;
         this.convolver = new Tone.Convolver({
           url: this.IRURL,
           wet: 1,
         });
       } else {
-        this.convolver.disconnect();
+        if (this.convolver) {
+          this.convolver.disconnect();
+        }
+        console.log("cannot get IR file: " + fileName + " for room: " + fileName);
       }
     },
   },
@@ -154,7 +215,13 @@ export default {
         localStorage.getItem("questionsMap") || "{}"
       );
     } else {
-      alert("ERROR! You didn't submit from previous page. Please go to home page and start again!!!")
+      alert(
+        "ERROR! You didn't submit from previous page. Please go to home page and start again!!!"
+      );
+    }
+
+    for (let item in vm.drySounds) {
+      vm.drySoundsArray.push(vm.drySounds[item].name);
     }
 
     if (this.audioURL && this.IRURL) {
@@ -227,7 +294,6 @@ export default {
     for (let room in vm.sortedProbabilityMap) {
       vm.sortedProbabilityMap[room].prob /= max;
     }
-  
 
     // get the next two best room and their probability
     vm.nextBestRoom = vm.sortedProbabilityMap[1].name;
@@ -238,7 +304,10 @@ export default {
       100
     ).toFixed(2);
 
-    console.log(vm.sortedProbabilityMap);
+    // convert sorted probability map to array with only name
+    for (let item in vm.sortedProbabilityMap) {
+      vm.IRArray.push(vm.sortedProbabilityMap[item].name);
+    }
 
     // charts
     const ctx = document.getElementById("probChart");

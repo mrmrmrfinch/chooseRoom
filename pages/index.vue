@@ -1,18 +1,25 @@
 <template>
   <v-main style="height: 100vh">
     <v-container style="height: 100%">
+            <div class='ripple-background' style="position:fixed;top:50%; left:50%">
+        <div class='circle xxlarge shade1'></div>
+        <div class='circle xlarge shade2'></div>
+        <div class='circle large shade3'></div>
+        <div class='circle mediun shade4'></div>
+        <div class='circle small shade5'></div>
+      </div>
       <div class="center">
         <h1
           class="introTitle"
           style="
             font-weight: 600;
-            color: white;
-            text-shadow: 2px 2px 14px rgba(0, 0, 0, 0.2);
+            color: black;
+            text-shadow: 2px 2px 28px rgba(255, 255, 255, 0.5);
           "
         >
           An Acoustically-Accurate<br />Room Selector Tool.
         </h1>
-        <p style="color: white; padding-bottom: 20px">
+        <p style="color: black; padding-bottom: 20px">
           A Project from University of Rochester AME292, 2022 Spring.
         </p>
         <v-btn elevation="2" class="btnMedia" x-large onclick="window.location='/questions'">
@@ -98,6 +105,88 @@ body {
   }
     .introTitle {
     font-size: 5em;
+  }
+}
+
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: ripple 15s infinite;
+  box-shadow: 0px 0px 1px 0px #508fb9;
+}
+
+.small {
+  width: 400px;
+  height: 400px;
+  left: -200px;
+  bottom: -200px;
+}
+
+.medium {
+  width: 600px;
+  height: 600px;
+  left: -300px;
+  bottom: -300px;
+}
+
+.large {
+  width: 800px;
+  height: 800px;
+  left: -400px;
+  bottom: -400px;
+}
+
+.xlarge {
+  width: 1000px;
+  height: 1000px;
+  left: -500px;
+  bottom: -500px;
+}
+
+.xxlarge {
+  width: 1200px;
+  height: 1200px;
+  left: -600px;
+  bottom: -600px;
+}
+
+.shade1 {
+  opacity: 0.05;
+  filter: blur(2px);
+}
+.shade2 {
+  opacity: 0.1;
+  filter: blur(4px);
+}
+
+.shade3 {
+  opacity: 0.1;
+  filter: blur(5px);
+}
+
+.shade4 {
+  opacity: 0.1;
+  filter: blur(10px);
+}
+
+.shade5 {
+  opacity: 0.1;
+  filter: blur(20px);
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(0.8);
   }
 }
 </style>
