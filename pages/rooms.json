@@ -1,50 +1,52 @@
 [
     {
-        "name": "SloanA",
-        "IRurl": "sloanA.wav",
+        "name": "May Room",
+        "IRurl": "mayRoom.wav",
         "clarity": 1.97,
-        "t20": 1.33
+        "t20": 1.33,
+        "capacity": 224,
+        "hasPiano": 1,
+        "hasPA": 0,
+        "description": "May Room Description! Room Capacity 50+ (224-260). This is the MAY ROOM DESCRIPTION GUYS!!!!!"
     },
     {
-        "name": "SloanB",
-        "IRurl": "sloanB.wav",
-        "clarity": 1,
-        "t20": 0.31
+        "name": "Sloan Performing Arts Center",
+        "IRurl": "sloan.wav",
+        "clarity": 1.97,
+        "t20": 1.33,
+        "capacity": 375,
+        "hasPiano": -1,
+        "hasPA": 1,
+        "description": "Sloan Description! Room Capacity 50+ (224-260). This is the SLOAN ROOM DESCRIPTION GUYS!!!!!"
     },
     {
-        "name": "SloanC",
-        "IRurl": "sloanC.wav",
-        "clarity": -1.07,
-        "t20": 1.99
+        "name": "Todd Theater",
+        "IRurl": "todd.wav",
+        "clarity": 1.97,
+        "t20": 1.33,
+        "capacity": 999,
+        "hasPiano": -1,
+        "hasPA": -1,
+        "description": "Todd Description! Room Capacity 999. This is the TODD ROOM DESCRIPTION GUYS!!!!!"
     },
     {
-        "name": "SloanD",
-        "IRurl": "sloanD.wav",
-        "clarity": 0,
-        "t20": 2.25
+        "name": "Upper Strong",
+        "IRurl": "upperStrong.wav",
+        "clarity": 1.97,
+        "t20": 1.33,
+        "capacity": 967,
+        "hasPiano": 1,
+        "hasPA": 1,
+        "description": "Upper Strong Description! HAHAHAHHHAHAHHAH!!!!!"
     },
     {
-        "name": "SloanE",
-        "IRurl": "sloanE.wav",
-        "clarity": 22.7,
-        "t20": 0.99
-    },
-    {
-        "name": "SloanF",
-        "IRurl": "sloanF.wav",
-        "clarity": 3.57,
-        "t20": 0.5
-    },
-    {
-        "name": "SloanG",
-        "IRurl": "sloanG.wav",
-        "clarity": -12.07,
-        "t20": 9.97
-    },
-    {
-        "name": "SloanH",
-        "IRurl": "sloanH.wav",
-        "clarity": 1,
-        "t20": 9.3
+        "name": "Chapel",
+        "IRurl": "chapel.wav",
+        "clarity": 1.97,
+        "t20": 1.33,
+        "capacity": 190,
+        "hasPiano": 1,
+        "hasPA": 1,
+        "description": "Chapel Description! HAHAHAHHHAHAHHAH!!!!!"
     }
 ]

@@ -43,5 +43,59 @@
         "selectionWeight": 0,
         "questionWeight": 50,
         "linkedValue": "t20"
+    },
+
+    {
+        "type": "slider",
+        "title": "Would you perfer a room with large or small capacity?",
+        "shortTitle": "Large/Small capacity",
+        "subtitle": "We link this value to capacity of the room.",
+        "negativeChoice": {
+            "title": "Small",
+            "icon": "zoom_out"
+        },
+        "positiveChoice": {
+            "title": "Large",
+            "icon": "zoom_in"
+        },
+        "selectionWeight": 0,
+        "questionWeight": 50,
+        "linkedValue": "capacity"
+    },
+
+    {
+        "type": "slider",
+        "title": "How much do you need a piano?",
+        "shortTitle": "Piano",
+        "subtitle": "We link this value to whether a room has a piano or not.",
+        "negativeChoice": {
+            "title": "Not So Much",
+            "icon": "wrong_location"
+        },
+        "positiveChoice": {
+            "title": "Definitely",
+            "icon": "where_to_vote"
+        },
+        "selectionWeight": 0,
+        "questionWeight": 50,
+        "linkedValue": "hasPiano"
+    },
+
+    {
+        "type": "slider",
+        "title": "How much do you need a PA?",
+        "shortTitle": "PA",
+        "subtitle": "We link this value to whether a room has a PA System or not.",
+        "negativeChoice": {
+            "title": "Not So Much",
+            "icon": "wrong_location"
+        },
+        "positiveChoice": {
+            "title": "Definitely",
+            "icon": "where_to_vote"
+        },
+        "selectionWeight": 0,
+        "questionWeight": 50,
+        "linkedValue": "hasPA"
     }
 ]
