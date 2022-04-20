@@ -2,7 +2,7 @@
   <v-app>
     <!-- Sizes your content based upon application components -->
     <v-main class="appMain">
-      <div class='ripple-background' style="position:fixed;top:100%">
+      <div class='ripple-background' style="position:fixed;top:100%;  z-index:3;">
         <div class='circle xxlarge shade1'></div>
         <div class='circle xlarge shade2'></div>
         <div class='circle large shade3'></div>
@@ -197,7 +197,7 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-
+@media only screen and (min-width: 600px) {
 .questions {
   position: absolute;
   right:0;
@@ -217,6 +217,32 @@ body {
   left: 30px;
   width:calc(30% - 70px);
   font-size: 1.2rem;
+}
+}
+@media only screen and (max-width: 601px) {
+.questions {
+  width: calc(100% - 26px);
+  background-color:white;
+  border-radius:10px;
+  padding:10px;
+  padding-bottom: 50px;
+  max-height: calc(100% - 100px);
+  overflow: scroll;
+  position:absolute;
+  top:130px;
+  z-index:999;
+}
+
+.pageTitle {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  height: 100px;
+  width:calc(100% - 70px);
+  font-size: 0.6rem;
+  color: white;
+  text-align:center;
+}
 }
 
 .questionCard {
