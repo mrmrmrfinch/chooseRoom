@@ -18,7 +18,7 @@
         <!-- would automatically bind to questions -->
         <div class="questions">
         <div class="questionCard" v-for="(item, index) in questionsMap" :key="index">
-          <p class="questionIndex">Question {{ index + 1 }} / {{questionsMap.length}}</p>
+          <p class="questionIndex">Question {{ index + 1 }} / {{questionsMap.length + 1}}</p>
           <p class="questionTitle"> {{ item.title }}</p>
           <p class="questionSubtitle">
             {{item.subtitle}}
@@ -45,6 +45,26 @@
                 <v-col cols="2">
                   <p class="questionSliderPrompt" style="text-align:left">{{item.positiveChoice.title}}
                     <span class="material-icons questionSliderIcon" style="width:24px">{{item.positiveChoice.icon}}</span>
+                    </p></v-col>
+              </v-row>
+            </v-container>
+            </div>
+        </div>
+
+        <div class="questionCard" >
+          <p class="questionIndex">Question {{ questionsMap.length + 1 }} / {{questionsMap.length + 1}}</p>
+          <p class="questionTitle">How many people at max would be in the room?</p>
+          <p class="questionSubtitle">
+            We need this information to filter out rooms that are too small.
+          </p>
+            <div style="width:100%">
+            <v-container>
+              <v-row>
+                <v-col cols="2"> </v-col>
+                <v-col cols="8"> <v-slider max="1000" min="1" default="100" v-model="minCapacity"></v-slider></v-col>
+                <v-col cols="2">
+                  <p class="questionSliderPrompt" style="text-align:left">
+                    <span>{{ minCapacity }}</span>
                     </p></v-col>
               </v-row>
             </v-container>
@@ -101,12 +121,7 @@ export default {
   data() {
     return {
       questionsMap: data,
-      // Multiple Choice Questions
-      performanceType: "",
-      roomCapacity: "",
-      dryOrWet: "",
-      requirePiano: "",
-      requirePA: "",
+      minCapacity: 0,
     };
   },
 
@@ -158,6 +173,7 @@ export default {
       } else {
         // write to local storage, page has been submited.
         localStorage.setItem("submit", true);
+        localStorage.setItem("minCapacity", this.minCapacity);
         this.$router.push("/reverb");
       }
     },
@@ -198,51 +214,51 @@ body {
   overflow: hidden;
 }
 @media only screen and (min-width: 600px) {
-.questions {
-  position: absolute;
-  right:0;
-  margin:20px;
-  padding: 40px;
-  width: 70%;
-  background-color:white;
-  border-radius:10px;
-  padding:10px;
-  max-height: calc(100% - 40px);
-  overflow: scroll;
-}
+  .questions {
+    position: absolute;
+    right: 0;
+    margin: 20px;
+    padding: 40px;
+    width: 70%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    max-height: calc(100% - 40px);
+    overflow: scroll;
+  }
 
-.pageTitle {
-  position: fixed;
-  top: 20px;
-  left: 30px;
-  width:calc(30% - 70px);
-  font-size: 1.2rem;
-}
+  .pageTitle {
+    position: fixed;
+    top: 20px;
+    left: 30px;
+    width: calc(30% - 70px);
+    font-size: 1.2rem;
+  }
 }
 @media only screen and (max-width: 601px) {
-.questions {
-  width: calc(100% - 26px);
-  background-color:white;
-  border-radius:10px;
-  padding:10px;
-  padding-bottom: 50px;
-  max-height: calc(100% - 100px);
-  overflow: scroll;
-  position:absolute;
-  top:130px;
-  z-index:999;
-}
+  .questions {
+    width: calc(100% - 26px);
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    padding-bottom: 50px;
+    max-height: calc(100% - 100px);
+    overflow: scroll;
+    position: absolute;
+    top: 130px;
+    z-index: 999;
+  }
 
-.pageTitle {
-  position: fixed;
-  top: 20px;
-  left: 30px;
-  height: 100px;
-  width:calc(100% - 70px);
-  font-size: 0.6rem;
-  color: white;
-  text-align:center;
-}
+  .pageTitle {
+    position: fixed;
+    top: 20px;
+    left: 30px;
+    height: 100px;
+    width: calc(100% - 70px);
+    font-size: 0.6rem;
+    color: white;
+    text-align: center;
+  }
 }
 
 .questionCard {

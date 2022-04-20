@@ -139,6 +139,7 @@ export default {
       roomDescription: "",
       roomCapacity: 0,
       roomImage: "",
+      minCapacity: 0,
     };
   },
   // watch if convolveSwitch is changed, then change the convolver node statuss.
@@ -255,6 +256,7 @@ export default {
     // check localStorage for submitted status.
     if (localStorage.getItem("submit")) {
       // get the questionsMap from local storage
+      vm.minCapacity = localStorage.getItem("minCapacity");
       vm.questionsMap = JSON.parse(
         localStorage.getItem("questionsMap") || "{}"
       );
@@ -296,6 +298,19 @@ export default {
       }
     }
 
+
+    // delete rooms in sorted Probability Map if they have capacity less than minCapacity
+    for (let room in vm.roomsMap) {
+      if (vm.roomsMap[room].capacity < vm.minCapacity) {
+        // find the room in probability map
+        for (let roomName in vm.probabilityMap) {
+          if (vm.probabilityMap[roomName].name === vm.roomsMap[room].name) {
+            vm.probabilityMap[roomName].prob = -100;
+          }
+        }
+      }
+    }
+
     // find the best room
     let bestProb = 0;
     for (let room in vm.probabilityMap) {
@@ -317,6 +332,7 @@ export default {
         return b.prob - a.prob;
       }
     );
+
 
     // use sigmond function to squash the sorted probability map
     let squash = function (x) {
