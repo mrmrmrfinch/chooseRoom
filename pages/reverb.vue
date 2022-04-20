@@ -32,7 +32,7 @@
             ></v-select>
             </v-col>
           </v-row>
-          <v-container fluid>
+          <v-container fluid v-if="roomCapacity > 0">
             <v-row>
               <v-col col="12" sm="8">
                 <p>room capacity: {{ roomCapacity }}</p>
@@ -137,7 +137,7 @@ export default {
       nextNextBestRoomProb: 0,
       // init
       roomDescription: "",
-      roomcapacity: null,
+      roomCapacity: 0,
       roomImage: "",
     };
   },
