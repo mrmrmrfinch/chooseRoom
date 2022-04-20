@@ -32,7 +32,7 @@
             ></v-select>
             </v-col>
           </v-row>
-          <v-container fluid v-if="roomCapacity > 0">
+          <v-container fluid v-if="roomCapacity > 0" style="height:400px">
             <v-row>
               <v-col col="12" sm="8">
                 <p>room capacity: {{ roomCapacity }}</p>
