@@ -13,15 +13,43 @@
             likely).
           </p>
         </v-container>
-        <v-container style="width:80%;margin-left:10%">
-        <canvas id="probChart" width="400" height="100"></canvas>
+        <v-container style="width: 80%; margin-left: 10%">
+          <canvas id="probChart" width="400" height="100"></canvas>
+        </v-container>
+
+        <v-container style="margin-top:40px">
+          <v-row>
+            <v-col cols="12" sm="8">
+            <h1>You could check out room information here.</h1>
+            </v-col>
+            <v-col cols="12" sm="4">
+            <v-select
+              :items="IRArray"
+              @change="onRoomChange"
+              label="Select a room to try"
+              solo
+              style="width:100%"
+            ></v-select>
+            </v-col>
+          </v-row>
+          <v-container fluid>
+            <v-row>
+              <v-col col="12" sm="8">
+                <p>room capacity: {{ roomCapacity }}</p>
+                <p>{{ roomDescription }}</p>
+              </v-col>
+              <v-col col="12" sm="4">
+                <img :src="roomImage" alt="room image" width="100%" />
+              </v-col>
+            </v-row>
+          </v-container>
         </v-container>
 
         <v-container fluid style="text-align: center; margin-top: 50px">
           <h1>You could hear how the room sounds here.</h1>
           <v-row
             align="center"
-            style="padding-left: 10%; padding-right: 10%; padding-top: 20px;"
+            style="padding-left: 10%; padding-right: 10%; padding-top: 20px"
           >
             <v-col class="d-flex" cols="12" sm="5">
               <v-select
@@ -45,7 +73,7 @@
               <v-btn
                 elevation="4"
                 v-on:click="togglePlay"
-                style="width: 100%; margin-top: -30px; height:46px"
+                style="width: 100%; margin-top: -30px; height: 46px"
               >
                 Toggle Play</v-btn
               >
@@ -107,6 +135,10 @@ export default {
       nextBestProb: 0,
       nextNextBestRoom: "",
       nextNextBestRoomProb: 0,
+      // init
+      roomDescription: "",
+      roomcapacity: null,
+      roomImage: "",
     };
   },
   // watch if convolveSwitch is changed, then change the convolver node statuss.
@@ -200,7 +232,19 @@ export default {
         if (this.convolver) {
           this.convolver.disconnect();
         }
-        console.log("cannot get IR file: " + fileName + " for room: " + fileName);
+        console.log(
+          "cannot get IR file: " + fileName + " for room: " + fileName
+        );
+      }
+    },
+    onRoomChange(roomName) {
+      // get roomName from roomsMap
+      for (let i = 0; i < this.roomsMap.length; i++) {
+        if (this.roomsMap[i].name === roomName) {
+          this.roomDescription = this.roomsMap[i].description;
+          this.roomCapacity = this.roomsMap[i].capacity;
+          this.roomImage = this.roomsMap[i].image;
+        }
       }
     },
   },

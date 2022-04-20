@@ -7,46 +7,51 @@
         "capacity": 224,
         "hasPiano": 1,
         "hasPA": 0,
-        "description": "May Room Description! Room Capacity 50+ (224-260). This is the MAY ROOM DESCRIPTION GUYS!!!!!"
+        "description": "May Room Description! Room Capacity 50+ (224-260). This is the MAY ROOM DESCRIPTION GUYS!!!!!",
+        "image": "https://rochester.edu/college/wcsa/assets/images/buildings-exterior/wilson-commons-exterior.jpg"
     },
     {
         "name": "Sloan Performing Arts Center",
         "IRurl": "sloan.wav",
         "clarity": 1.97,
         "t20": 1.33,
-        "capacity": 375,
+        "capacity": 142,
         "hasPiano": -1,
         "hasPA": 1,
-        "description": "Sloan Description! Room Capacity 50+ (224-260). This is the SLOAN ROOM DESCRIPTION GUYS!!!!!"
+        "description": "Sloan Description! Room Capacity 50+ (224-260). This is the SLOAN ROOM DESCRIPTION GUYS!!!!!",
+        "image": "https://www.rochester.edu/newscenter/wp-content/uploads/2021/08/fea-sloan-performing-arts-center-exterior-1.jpg"
     },
     {
         "name": "Todd Theater",
         "IRurl": "todd.wav",
         "clarity": 1.97,
         "t20": 1.33,
-        "capacity": 999,
+        "capacity": 479,
         "hasPiano": -1,
         "hasPA": -1,
-        "description": "Todd Description! Room Capacity 999. This is the TODD ROOM DESCRIPTION GUYS!!!!!"
+        "description": "Todd Description! Room Capacity 999. This is the TODD ROOM DESCRIPTION GUYS!!!!!",
+        "image": "http://projects.lib.rochester.edu/wp-content/uploads/2015/04/2014-04-21_Todd_Union_exterior_13653.jpg"
     },
     {
         "name": "Upper Strong",
         "IRurl": "upperStrong.wav",
         "clarity": 1.97,
         "t20": 1.33,
-        "capacity": 967,
+        "capacity": 960,
         "hasPiano": 1,
         "hasPA": 1,
-        "description": "Upper Strong Description! HAHAHAHHHAHAHHAH!!!!!"
+        "description": "Upper Strong Description! HAHAHAHHHAHAHHAH!!!!!",
+        "image": "https://www.rochester.edu/college/ecm/locations/location-photos/strong_aud_building.jpg"
     },
     {
         "name": "Chapel",
         "IRurl": "chapel.wav",
         "clarity": 1.97,
         "t20": 1.33,
-        "capacity": 190,
+        "capacity": 640,
         "hasPiano": 1,
         "hasPA": 1,
-        "description": "Chapel Description! HAHAHAHHHAHAHHAH!!!!!"
+        "description": "Chapel Description! HAHAHAHHHAHAHHAH!!!!!",
+        "image": "https://www.rochester.edu/chapel/assets/images/Interfaith_Chapel_482345.jpg"
     }
 ]
