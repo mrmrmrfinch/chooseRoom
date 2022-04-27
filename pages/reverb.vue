@@ -9,7 +9,7 @@
             The next best two is {{ nextBestRoom }} ({{ nextBestProb }}% less
             likely) and {{ nextNextBestRoom }} ({{ nextNextBestRoomProb }}% less
             likely).
-            <a href="#probChart" style="color:white"> Check our your probability for each room!</a>
+            <a href="#probDiv" style="color:white"> Check our your probability for each room!</a>
           </p>
         </v-container>
         <v-container style="width: 90%; margin-left: 5%">
@@ -128,7 +128,7 @@
             </v-row>
           </v-card>
         </v-container>
-        <v-container style="width: 90%; margin-left: 5%">
+        <v-container style="width: 90%; margin-left: 5%" id="probDiv">
           <v-card elevation="10" style="padding: 30px; border-radius: 10px">
             <h3>Here's your probability chart.</h3>
             <p class="explainText">
