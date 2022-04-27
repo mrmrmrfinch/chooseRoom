@@ -1,163 +1,170 @@
 <template>
   <v-main class="appMain">
-    <v-app class="appMain" style="background-color: #3399ff;padding-bottom:30px">
+    <v-app
+      class="appMain"
+      style="background-color: #3399ff; padding-bottom: 30px"
+    >
       <!-- Provides the application the proper gutter -->
-        <v-btn depressed href="/"> back to home and redo the test </v-btn>
-        <v-container style="text-align: center; color:white; padding-top:40px">
-          <h1>We think the best room for you is {{ bestRoom }}.</h1>
-          <p>
-            The next best two is {{ nextBestRoom }} ({{ nextBestProb }}% less
-            likely) and {{ nextNextBestRoom }} ({{ nextNextBestRoomProb }}% less
-            likely).
-            <a href="#probDiv" style="color:white"> Check our your probability for each room!</a>
-          </p>
-        </v-container>
-        <v-container style="width: 90%; margin-left: 5%">
-          <v-card
-            elevation="10"
-            style="padding: 30px; border-radius: 10px; min-height: 450px"
+      <v-btn depressed href="/"> back to home and redo the test </v-btn>
+      <v-container style="text-align: center; color: white; padding-top: 40px">
+        <h1>We think the best room for you is {{ bestRoom }}.</h1>
+        <p>
+          The next best two is {{ nextBestRoom }} ({{ nextBestProb }}% less
+          likely) and {{ nextNextBestRoom }} ({{ nextNextBestRoomProb }}% less
+          likely).
+          <a href="#probDiv" style="color: white">
+            Check our your probability for each room!</a
           >
-            <h3>{{ bestRoom }}, and all other rooms' information are here.</h3>
-            <v-row>
-              <v-col cols="12" sm="8">
-                <p class="explainText">
-                  Although we would recommend {{ bestRoom }}, feel free to check
-                  all rooms' data.
-                </p>
-              </v-col>
-              <v-col cols="12" sm="4">
-                <v-select
-                  :items="IRArray"
-                  @change="onRoomChange"
-                  label="Select a room"
-                  solo
-                  style="width: 100%"
-                ></v-select>
-              </v-col>
-            </v-row>
-            <v-divider style="margin-bottom: 20px"></v-divider>
-            <v-container
-              fluid
-              v-if="roomCapacity > 0"
-              style="width: 100%; padding: 0; margin: 0"
-            >
-              <v-row>
-                <v-col cols="12" sm="8">
-                  <div style="margin-bottom: 25px">
-                    <v-chip color="primary">
-                      Capacity: {{ roomCapacity }}
-                    </v-chip>
-                    <v-chip color="primary"> PA: {{ roomhasPA }} </v-chip>
-                    <v-chip color="primary"> Piano: {{ roomhasPiano }} </v-chip>
-                  </div>
-                  <p>{{ roomDescription }}</p>
-                </v-col>
-                <v-col cols="12" sm="4">
-                  <v-card>
-                    <img
-                      :src="roomImage"
-                      alt="room image"
-                      width="100%"
-                      style="padding: 10px"
-                    />
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-container>
-            <v-container
-              fluid
-              v-if="roomCapacity <= 0"
-              style="text-align: center; color: grey; font-size: 10px"
-            >
-              <p style="margin-top: 100px">No Room Selected</p>
-            </v-container>
-          </v-card>
-        </v-container>
-
-        <v-container style="width: 90%; margin-left: 5%">
-          <v-card elevation="10" style="padding: 30px; border-radius: 10px">
-            <h3>You could hear how the rooms sound here.</h3>
-            <v-row>
-              <v-col cols="12" sm="8">
-                <p class="explainText">
-                  We are using Web Audio to convolve the room's impulse response
-                  directly with the dry audio files that we provided to help you
-                  get a sense of how the room will sound. To know more about how
-                  we collected the impulse responses and what they mean, please
-                  check out our <a href="">project writeup</a>.
-                </p>
-              </v-col>
-              <v-col cols="12" sm="4">
-                <v-container class="px-0" fluid>
-                  <v-switch
-                    inset
-                    v-model="convolveSwitch"
-                    :label="toDryWet(convolveSwitch)"
-                  ></v-switch>
-                </v-container>
-              </v-col>
-            </v-row>
-            <v-row align="center">
-              <v-col class="d-flex" cols="12" md="5" sm="6">
-                <v-select
-                  :items="drySoundsArray"
-                  @change="onAudioFileChange"
-                  label="Select a dry sound to try"
-                  solo
-                ></v-select>
-              </v-col>
-
-              <v-col class="d-flex" cols="12" md="5" sm="6">
-                <v-select
-                  :items="IRArray"
-                  @change="onIRFileChange"
-                  label="Select a room to try"
-                  solo
-                ></v-select>
-              </v-col>
-
-              <v-col class="d-flex" cols="12" md="2" sm="12">
-                <v-btn
-                  elevation="4"
-                  v-on:click="togglePlay"
-                  style="width: 100%; margin-top: -30px; height: 46px"
-                >
-                  Toggle Play</v-btn
-                >
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-container>
-        <v-container style="width: 90%; margin-left: 5%" id="probDiv">
-          <v-card elevation="10" style="padding: 30px; border-radius: 10px">
-            <h3>Here's your probability chart.</h3>
-            <p class="explainText">
-              The chart is calculated based on weights of each choice and
-              properties of each room. We squash everything using tanh and
-              sigmoid functions, then normalize the largest value to be one. If
-              a room has a value of 1, it means it is the best room for you. If
-              you notice some of the rooms have a very low probability, it's
-              likely because they have a smaller capacity than the maximum
-              number of people that will be present for your activity.
-            </p>
-            <div style="padding: 30px">
-              <canvas
-                class="d-none d-md-block"
-                id="probChart"
-                width="300"
-                height="100"
-                style="width: 80%"
-              ></canvas>
-              <canvas
-                class="d-md-none"
-                id="probChartMobile"
-                width="100"
-                height="150"
+        </p>
+      </v-container>
+      <v-container style="width: 90%; margin-left: 5%">
+        <v-card
+          elevation="10"
+          style="padding: 30px; border-radius: 10px; min-height: 450px"
+        >
+          <h3>{{ bestRoom }}, and all other rooms' information are here.</h3>
+          <v-row>
+            <v-col cols="12" sm="8">
+              <p class="explainText">
+                Although we would recommend {{ bestRoom }}, feel free to check
+                all rooms' data.
+              </p>
+            </v-col>
+            <v-col cols="12" sm="4">
+              <v-select
+                :items="IRArray"
+                @change="onRoomChange"
+                label="Select a room"
+                solo
                 style="width: 100%"
-              ></canvas>
-            </div>
-          </v-card>
-        </v-container>
+              ></v-select>
+            </v-col>
+          </v-row>
+          <v-divider style="margin-bottom: 20px"></v-divider>
+          <v-container
+            fluid
+            v-if="roomCapacity > 0"
+            style="width: 100%; padding: 0; margin: 0"
+          >
+            <v-row>
+              <v-col cols="12" sm="8">
+                <div style="margin-bottom: 25px">
+                  <v-chip color="primary">
+                    Capacity: {{ roomCapacity }}
+                  </v-chip>
+                  <v-chip color="primary"> PA: {{ roomhasPA }} </v-chip>
+                  <v-chip color="primary"> Piano: {{ roomhasPiano }} </v-chip>
+                </div>
+                <p>{{ roomDescription }}</p>
+              </v-col>
+              <v-col cols="12" sm="4">
+                <v-card>
+                  <img
+                    :src="roomImage"
+                    alt="room image"
+                    width="100%"
+                    style="padding: 10px"
+                  />
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+          <v-container
+            fluid
+            v-if="roomCapacity <= 0"
+            style="text-align: center; color: grey; font-size: 10px"
+          >
+            <p style="margin-top: 100px">No Room Selected</p>
+          </v-container>
+        </v-card>
+      </v-container>
+
+      <v-container style="width: 90%; margin-left: 5%">
+        <v-card elevation="10" style="padding: 30px; border-radius: 10px">
+          <h3>You could hear how the rooms sound here.</h3>
+          <v-row>
+            <v-col cols="12" sm="8">
+              <p class="explainText">
+                We are using Web Audio to convolve the room's impulse response
+                directly with the dry audio files that we provided to help you
+                get a sense of how the room will sound. To know more about how
+                we collected the impulse responses and what they mean, please
+                check out our <a href="">project writeup</a>.
+              </p>
+            </v-col>
+            <v-col cols="12" sm="4">
+              <v-container class="px-0" fluid>
+                <v-switch
+                  inset
+                  v-model="convolveSwitch"
+                  :label="toDryWet(convolveSwitch)"
+                ></v-switch>
+              </v-container>
+            </v-col>
+          </v-row>
+          <v-row align="center">
+            <v-col class="d-flex" cols="12" md="5" sm="6">
+              <v-select
+                :items="drySoundsArray"
+                @change="onAudioFileChange"
+                label="Select a dry sound to try"
+                solo
+              ></v-select>
+            </v-col>
+
+            <v-col class="d-flex" cols="12" md="5" sm="6">
+              <v-select
+                :items="IRArray"
+                @change="onIRFileChange"
+                label="Select a room to try"
+                solo
+              ></v-select>
+            </v-col>
+
+            <v-col class="d-flex" cols="12" md="2" sm="12">
+              <v-btn
+                elevation="4"
+                v-on:click="togglePlay"
+                style="width: 100%; margin-top: -30px; height: 46px"
+              >
+                Toggle Play</v-btn
+              >
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-container>
+      <v-container style="width: 90%; margin-left: 5%" id="probDiv">
+        <v-card elevation="10" style="padding: 30px; border-radius: 10px">
+          <h3>Here's your probability chart.</h3>
+          <p class="explainText">
+            The chart is calculated based on weights of each choice and
+            properties of each room. We squash everything using tanh and sigmoid
+            functions, then normalize the largest value to be one. If a room has
+            a value of 1, it means it is the best room for you. If you notice
+            some of the rooms have a very low probability, it's likely because
+            they have a smaller capacity than the maximum number of people that
+            will be present for your activity. To know more about how we
+            calculated the probabilities, please check out our
+            <a href="">project writeup</a>.
+          </p>
+          <div style="padding: 30px">
+            <canvas
+              class="d-none d-md-block"
+              id="probChart"
+              width="300"
+              height="100"
+              style="width: 80%"
+            ></canvas>
+            <canvas
+              class="d-md-none"
+              id="probChartMobile"
+              width="100"
+              height="150"
+              style="width: 100%"
+            ></canvas>
+          </div>
+        </v-card>
+      </v-container>
     </v-app>
   </v-main>
 </template>
