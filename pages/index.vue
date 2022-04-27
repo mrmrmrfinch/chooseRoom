@@ -20,7 +20,7 @@
           An Acoustically-Accurate<br />Room Selector Tool.
         </h1>
         <p style="color: black; padding-bottom: 20px">
-          A Project from University of Rochester AME292, 2022 Spring.
+          A Project from AME292, 2022 Spring, University of Rochester.
         </p>
         <v-btn elevation="2" class="btnMedia" x-large onclick="window.location='/questions'">
           Get Started</v-btn
