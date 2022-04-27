@@ -1,20 +1,18 @@
 <template>
-  <v-main>
-    <v-app>
+  <v-main class="appMain">
+    <v-app class="appMain" style="background-color: #3399ff;padding-bottom:30px">
       <!-- Provides the application the proper gutter -->
-      <v-container fluid>
-        <v-btn depressed href="/"> back to home </v-btn>
-
-        <v-container style="text-align: center">
+        <v-btn depressed href="/"> back to home and redo the test </v-btn>
+        <v-container style="text-align: center; color:white; padding-top:40px">
           <h1>We think the best room for you is {{ bestRoom }}.</h1>
           <p>
             The next best two is {{ nextBestRoom }} ({{ nextBestProb }}% less
             likely) and {{ nextNextBestRoom }} ({{ nextNextBestRoomProb }}% less
             likely).
-            <a href="#probChart"> Check our your probability for each room!</a>
+            <a href="#probChart" style="color:white"> Check our your probability for each room!</a>
           </p>
         </v-container>
-        <v-container style="width: 80%; margin-left: 10%">
+        <v-container style="width: 90%; margin-left: 5%">
           <v-card
             elevation="10"
             style="padding: 30px; border-radius: 10px; min-height: 450px"
@@ -76,7 +74,7 @@
           </v-card>
         </v-container>
 
-        <v-container style="width: 80%; margin-left: 10%">
+        <v-container style="width: 90%; margin-left: 5%">
           <v-card elevation="10" style="padding: 30px; border-radius: 10px">
             <h3>You could hear how the rooms sound here.</h3>
             <v-row>
@@ -130,7 +128,7 @@
             </v-row>
           </v-card>
         </v-container>
-        <v-container style="width: 80%; margin-left: 10%">
+        <v-container style="width: 90%; margin-left: 5%">
           <v-card elevation="10" style="padding: 30px; border-radius: 10px">
             <h3>Here's your probability chart.</h3>
             <p class="explainText">
@@ -160,7 +158,6 @@
             </div>
           </v-card>
         </v-container>
-      </v-container>
     </v-app>
   </v-main>
 </template>
@@ -519,7 +516,26 @@ export default {
 };
 </script>
 
-<style>
+<style scope>
+@font-face {
+  font-family: "Manrope";
+  src: url("/manrope.woff2") format("woff2");
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #3399ff;
+}
+
+.appMain {
+  margin: 0;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
+}
+
 .explainText {
   padding-top: 6px;
   font-size: 15px;

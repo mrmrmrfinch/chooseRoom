@@ -3,7 +3,7 @@
         "name": "May Room",
         "IRurl": "mayroom_IR.wav",
         "clarity": 1.97,
-        "t20": 1.33,
+        "t20": 3.6452,
         "capacity": 224,
         "hasPiano": 1,
         "hasPA": 0,
@@ -13,7 +13,7 @@
     {
         "name": "Sloan Performing Arts Center",
         "IRurl": "sloan.wav",
-        "clarity": 1.97,
+        "clarity": 0.9891,
         "t20": 1.33,
         "capacity": 142,
         "hasPiano": -1,
@@ -22,20 +22,9 @@
         "image": "https://www.rochester.edu/newscenter/wp-content/uploads/2021/08/fea-sloan-performing-arts-center-exterior-1.jpg"
     },
     {
-        "name": "Todd Theater",
-        "IRurl": "todd.wav",
-        "clarity": 1.97,
-        "t20": 1.33,
-        "capacity": 479,
-        "hasPiano": -1,
-        "hasPA": -1,
-        "description": "Named for George W. Todd, 1860-19385, who originated the idea of purchasing the Oak Hill golf course for use as the University of Rochester campus. Deeply interested in a place for students, Todd organized a group of citizens who procured funds to create a student union. Dedicated in 1930 with other River Campus buildings; remodeled in 1946.",
-        "image": "http://projects.lib.rochester.edu/wp-content/uploads/2015/04/2014-04-21_Todd_Union_exterior_13653.jpg"
-    },
-    {
         "name": "Upper Strong",
         "IRurl": "upperStrong.wav",
-        "clarity": 1.97,
+        "clarity": 1.0056,
         "t20": 1.33,
         "capacity": 960,
         "hasPiano": 1,
@@ -46,7 +35,7 @@
     {
         "name": "Chapel",
         "IRurl": "chapel.wav",
-        "clarity": 1.97,
+        "clarity": 0.2545,
         "t20": 1.33,
         "capacity": 640,
         "hasPiano": 1,
