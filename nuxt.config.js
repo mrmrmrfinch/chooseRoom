@@ -9,8 +9,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - chooseRoom',
-    title: 'chooseRoom',
+    titleTemplate: '%s - AAAAAAH',
+    title: 'AAAAAAH',
     htmlAttrs: {
       lang: 'en'
     },

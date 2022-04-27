@@ -6,5 +6,13 @@
     {
         "name": "Bassoon",
         "url": "bassoon_As2_phrase_mezzo-forte_tenuto.mp3"
+    },
+    {
+        "name": "Male Speech",
+        "url": "MaleSpeech_dry_2.wav"
+    },
+    {
+        "name": "Female Speech",
+        "url": "FemaleSpeech_Dry_2.wav"
     }
 ]

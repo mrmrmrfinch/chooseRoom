@@ -78,6 +78,15 @@
               </div>
             </v-container>
             <div style="width:100%;">
+              <v-row>
+                <v-col cols="4" md="2"></v-col>
+                <v-col cols="8" md="10">
+              <div style="font-size:12px">
+                <span style="float:left;text-align:center">Not<br />Really</span>
+                <span style="float:right;text-align:center">S U P E R<br />Important</span>
+              </div>
+                </v-col>
+              </v-row>
           <div class="questionWeightSlider" v-for="(item, index) in questionsMap" :key=index>
             <div v-if="item.type == 'multipleChoice'">
               <v-row>

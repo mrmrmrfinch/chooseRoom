@@ -7,7 +7,7 @@
         "capacity": 224,
         "hasPiano": 1,
         "hasPA": 0,
-        "description": "May Room Description! Room Capacity 50+ (224-260). This is the MAY ROOM DESCRIPTION GUYS!!!!!",
+        "description": "Wilson Commons is the student union on River Campus with many services including The Commons Food Court, Starbucks, Blimpie Subs, The Hive Game Room, Common Connection Information Desk, Mane Attraction Hair Salon, and Hartnett Art Gallery. The Common Market, a one-stop shop for bulk food, candy and tickets to campus events, is also located in the building. In addition to several multi-purpose rooms and conference rooms, Wilson Commons also houses several units of the Office of the Dean of Students including Wilson Commons Student Activities, Fraternity & Sorority Affairs, Parent and Family Relations, Intercultural Center, and the Center for Student Conflict Management.",
         "image": "https://rochester.edu/college/wcsa/assets/images/buildings-exterior/wilson-commons-exterior.jpg"
     },
     {
@@ -18,7 +18,7 @@
         "capacity": 142,
         "hasPiano": -1,
         "hasPA": 1,
-        "description": "Sloan Description! Room Capacity 50+ (224-260). This is the SLOAN ROOM DESCRIPTION GUYS!!!!!",
+        "description": "Dedicated to theater, dance, and music, the three-story Sloan Center will house a 200-seat black box theater, an atrium, a café, a green room, a scene shop, a costume shop, a box office, dressing rooms, a conditioning room, and more. Each space will encourage creative expression, skill building, and community activity.",
         "image": "https://www.rochester.edu/newscenter/wp-content/uploads/2021/08/fea-sloan-performing-arts-center-exterior-1.jpg"
     },
     {
@@ -29,7 +29,7 @@
         "capacity": 479,
         "hasPiano": -1,
         "hasPA": -1,
-        "description": "Todd Description! Room Capacity 999. This is the TODD ROOM DESCRIPTION GUYS!!!!!",
+        "description": "Named for George W. Todd, 1860-19385, who originated the idea of purchasing the Oak Hill golf course for use as the University of Rochester campus. Deeply interested in a place for students, Todd organized a group of citizens who procured funds to create a student union. Dedicated in 1930 with other River Campus buildings; remodeled in 1946.",
         "image": "http://projects.lib.rochester.edu/wp-content/uploads/2015/04/2014-04-21_Todd_Union_exterior_13653.jpg"
     },
     {
@@ -40,7 +40,7 @@
         "capacity": 960,
         "hasPiano": 1,
         "hasPA": 1,
-        "description": "Upper Strong Description! HAHAHAHHHAHAHHAH!!!!!",
+        "description": "Named for Col. Henry Alvah Strong, 1838-1919, a president of Eastman Kodak Company. The building was a gift from Hattie M. Strong, 1864-1950, a philanthropist and his second wife, and her son, L. Corrin Strong, in memory of their husband and father. Dedicated in 1930 with other original River Campus buildings.",
         "image": "https://www.rochester.edu/college/ecm/locations/location-photos/strong_aud_building.jpg"
     },
     {
@@ -51,7 +51,7 @@
         "capacity": 640,
         "hasPiano": 1,
         "hasPA": 1,
-        "description": "Chapel Description! HAHAHAHHHAHAHHAH!!!!!",
+        "description": "The University took a pioneering step forward when the Interfaith Chapel was built in 1970. At that time, few schools could boast a facility intended to be a religious gathering place for all people. The Interfaith Chapel is a place for people to worship in their particular faith and a place where people of different faiths, or no religious tradition at all, can share in dialogue, worship, and interfaith education. Our multi-faith community and our interfaith engagements contribute significantly to the rich diversity that is the University of Rochester experience.",
         "image": "https://www.rochester.edu/chapel/assets/images/Interfaith_Chapel_482345.jpg"
     }
 ]
