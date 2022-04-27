@@ -1,7 +1,7 @@
 [
     {
         "name": "May Room",
-        "IRurl": "mayRoom.wav",
+        "IRurl": "mayroom_IR.wav",
         "clarity": 1.97,
         "t20": 1.33,
         "capacity": 224,

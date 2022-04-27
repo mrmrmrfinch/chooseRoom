@@ -1,22 +1,10 @@
 [
     {
-        "name": "Speech",
-        "url": "speech.wav"
+        "name": "Viola",
+        "url": "viola_C3_phrase_mezzo-forte_arco-detache.mp3"
     },
     {
-        "name": "Music",
-        "url": "music.wav"
-    },
-    {
-        "name": "Violin",
-        "url": "violin.wav"
-    },
-    {
-        "name": "Cello",
-        "url": "cello.wav"
-    },
-    {
-        "name": "Trumpet",
-        "url": "trumpet.wav"
+        "name": "Bassoon",
+        "url": "bassoon_As2_phrase_mezzo-forte_tenuto.mp3"
     }
 ]

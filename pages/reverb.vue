@@ -3,7 +3,7 @@
     <v-app>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        <a href="/"> Back to home </a>
+        <v-btn depressed href="/"> back to home </v-btn>
 
         <v-container style="text-align: center">
           <h1>We think the best room for you is {{ bestRoom }}.</h1>
@@ -11,85 +11,154 @@
             The next best two is {{ nextBestRoom }} ({{ nextBestProb }}% less
             likely) and {{ nextNextBestRoom }} ({{ nextNextBestRoomProb }}% less
             likely).
+            <a href="#probChart"> Check our your probability for each room!</a>
           </p>
         </v-container>
         <v-container style="width: 80%; margin-left: 10%">
-          <canvas id="probChart" width="400" height="100"></canvas>
-        </v-container>
-
-        <v-container style="margin-top:40px">
-          <v-row>
-            <v-col cols="12" sm="8">
-            <h1>You could check out room information here.</h1>
-            </v-col>
-            <v-col cols="12" sm="4">
-            <v-select
-              :items="IRArray"
-              @change="onRoomChange"
-              label="Select a room to try"
-              solo
-              style="width:100%"
-            ></v-select>
-            </v-col>
-          </v-row>
-          <v-container fluid v-if="roomCapacity > 0" style="height:400px">
+          <v-card
+            elevation="10"
+            style="padding: 30px; border-radius: 10px; min-height: 450px"
+          >
+            <h3>{{ bestRoom }}, and all other rooms' information are here.</h3>
             <v-row>
-              <v-col col="12" sm="8">
-                <p>room capacity: {{ roomCapacity }}</p>
-                <p>{{ roomDescription }}</p>
+              <v-col cols="12" sm="8">
+                <p class="explainText">
+                  Although we would recommend {{ bestRoom }}, feel free to check
+                  all rooms' data.
+                </p>
               </v-col>
-              <v-col col="12" sm="4">
-                <img :src="roomImage" alt="room image" width="100%" />
+              <v-col cols="12" sm="4">
+                <v-select
+                  :items="IRArray"
+                  @change="onRoomChange"
+                  label="Select a room"
+                  solo
+                  style="width: 100%"
+                ></v-select>
               </v-col>
             </v-row>
-          </v-container>
+            <v-divider style="margin-bottom: 20px"></v-divider>
+            <v-container
+              fluid
+              v-if="roomCapacity > 0"
+              style="width: 100%; padding: 0; margin: 0"
+            >
+              <v-row>
+                <v-col cols="12" sm="8">
+                  <div style="margin-bottom: 25px">
+                    <v-chip color="primary">
+                      Capacity: {{ roomCapacity }}
+                    </v-chip>
+                    <v-chip color="primary"> PA: {{ roomhasPA }} </v-chip>
+                    <v-chip color="primary"> Piano: {{ roomhasPiano }} </v-chip>
+                  </div>
+                  <p>{{ roomDescription }}</p>
+                </v-col>
+                <v-col cols="12" sm="4">
+                  <v-card>
+                    <img
+                      :src="roomImage"
+                      alt="room image"
+                      width="100%"
+                      style="padding: 10px"
+                    />
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+            <v-container
+              fluid
+              v-if="roomCapacity <= 0"
+              style="text-align: center; color: grey; font-size: 10px"
+            >
+              <p style="margin-top: 100px">No Room Selected</p>
+            </v-container>
+          </v-card>
         </v-container>
 
-        <v-container fluid style="text-align: center; margin-top: 50px">
-          <h1>You could hear how the room sounds here.</h1>
-          <v-row
-            align="center"
-            style="padding-left: 10%; padding-right: 10%; padding-top: 20px"
-          >
-            <v-col class="d-flex" cols="12" sm="5">
-              <v-select
-                :items="drySoundsArray"
-                @change="onAudioFileChange"
-                label="Select a dry sound to try"
-                solo
-              ></v-select>
-            </v-col>
+        <v-container style="width: 80%; margin-left: 10%">
+          <v-card elevation="10" style="padding: 30px; border-radius: 10px">
+            <h3>You could hear how the rooms sound here.</h3>
+            <v-row>
+              <v-col cols="12" sm="8">
+                <p class="explainText">
+                  We are using Web Audio to convolve the room's impulse response
+                  directly with the dry audio files that we provided to help you
+                  get a sense of how the room will sound. To know more about how
+                  we collected the impulse responses and what they mean, please
+                  check out our <a href="">project writeup</a>.
+                </p>
+              </v-col>
+              <v-col cols="12" sm="4">
+                <v-container class="px-0" fluid>
+                  <v-switch
+                    inset
+                    v-model="convolveSwitch"
+                    :label="toDryWet(convolveSwitch)"
+                  ></v-switch>
+                </v-container>
+              </v-col>
+            </v-row>
+            <v-row align="center">
+              <v-col class="d-flex" cols="12" md="5" sm="6">
+                <v-select
+                  :items="drySoundsArray"
+                  @change="onAudioFileChange"
+                  label="Select a dry sound to try"
+                  solo
+                ></v-select>
+              </v-col>
 
-            <v-col class="d-flex" cols="12" sm="5">
-              <v-select
-                :items="IRArray"
-                @change="onIRFileChange"
-                label="Select a room to try"
-                solo
-              ></v-select>
-            </v-col>
+              <v-col class="d-flex" cols="12" md="5" sm="6">
+                <v-select
+                  :items="IRArray"
+                  @change="onIRFileChange"
+                  label="Select a room to try"
+                  solo
+                ></v-select>
+              </v-col>
 
-            <v-col class="d-flex" cols="12" sm="2">
-              <v-btn
-                elevation="4"
-                v-on:click="togglePlay"
-                style="width: 100%; margin-top: -30px; height: 46px"
-              >
-                Toggle Play</v-btn
-              >
-            </v-col>
-          </v-row>
-          <v-row align="center">
-            <v-col class="d-flex" cols="12" sm="6">
-              <v-container class="px-0" fluid>
-                <v-switch
-                  inset
-                  v-model="convolveSwitch"
-                  :label="`Convolve: ${convolveSwitch.toString()}`"
-                ></v-switch>
-              </v-container>
-            </v-col>
-          </v-row>
+              <v-col class="d-flex" cols="12" md="2" sm="12">
+                <v-btn
+                  elevation="4"
+                  v-on:click="togglePlay"
+                  style="width: 100%; margin-top: -30px; height: 46px"
+                >
+                  Toggle Play</v-btn
+                >
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-container>
+        <v-container style="width: 80%; margin-left: 10%">
+          <v-card elevation="10" style="padding: 30px; border-radius: 10px">
+            <h3>Here's your probability chart.</h3>
+            <p class="explainText">
+              The chart is calculated based on weights of each choice and
+              properties of each room. We squash everything using tanh and
+              sigmoid functions, then normalize the largest value to be one. If
+              a room has a value of 1, it means it is the best room for you. If
+              you notice some of the rooms have a very low probability, it's
+              likely because they have a smaller capacity than the maximum
+              number of people that will be present for your activity.
+            </p>
+            <div style="padding: 30px">
+              <canvas
+                class="d-none d-md-block"
+                id="probChart"
+                width="300"
+                height="100"
+                style="width: 80%"
+              ></canvas>
+              <canvas
+                class="d-md-none"
+                id="probChartMobile"
+                width="100"
+                height="150"
+                style="width: 100%"
+              ></canvas>
+            </div>
+          </v-card>
         </v-container>
       </v-container>
     </v-app>
@@ -101,8 +170,8 @@ import * as Tone from "tone";
 import Chart from "chart.js/auto";
 
 // this is where we would store the audio files for IR and dry sounds
-const roomIRLocation = "../static/roomIR";
-const drySoundsLocation = "../static/drySounds";
+const roomIRLocation = "roomIR";
+const drySoundsLocation = "drySounds";
 
 const data = require("./rooms.json");
 const dry = require("./drySounds.json");
@@ -111,7 +180,6 @@ window.onclick = function () {
   Tone.start();
   Tone.context.lookAhead = 0;
 };
-
 export default {
   name: "reverbPage",
   data() {
@@ -139,6 +207,8 @@ export default {
       roomDescription: "",
       roomCapacity: 0,
       roomImage: "",
+      roomhasPA: null,
+      roomhasPiano: null,
       minCapacity: 0,
     };
   },
@@ -161,16 +231,12 @@ export default {
   methods: {
     togglePlay() {
       // if Web Audio is not initialized, initialize it
-      if (!Tone.start) {
-        Tone.start();
-      }
-      if (!Tone.context.state) {
-        Tone.context.resume();
-      }
+      Tone.start();
+      Tone.context.lookAhead = 0;
+      Tone.context.resume();
       if (this.audioURL && this.IRURL) {
         this.player.connect(this.convolver);
         this.convolver.toMaster();
-
         // if audioPlayer is started, stop it
         if (this.player.state === "started") {
           this.player.stop();
@@ -197,14 +263,17 @@ export default {
         this.player.stop();
       }
 
+      console.log(fileURL);
+
       if (fileURL !== "") {
         this.audioURL = fileURL;
-        if (this.audioURL !== "") {
+        if (this.audioURL !== null) {
           this.player = new Tone.Player({
             url: this.audioURL,
             loop: true,
             volume: 6,
           });
+          console.log(this.player);
         } else {
           this.player.stop();
           console.log("cannot get audioURL: " + this.audioURL);
@@ -215,6 +284,8 @@ export default {
       }
     },
     onIRFileChange(fileName) {
+      Tone.start();
+      Tone.context.lookAhead = 0;
       let fileURL = "";
 
       // get fileURL from fileName in roomsMap
@@ -225,6 +296,7 @@ export default {
       }
       if (fileURL) {
         this.IRURL = roomIRLocation + "/" + fileURL;
+        console.log(this.IRURL);
         this.convolver = new Tone.Convolver({
           url: this.IRURL,
           wet: 1,
@@ -245,7 +317,24 @@ export default {
           this.roomDescription = this.roomsMap[i].description;
           this.roomCapacity = this.roomsMap[i].capacity;
           this.roomImage = this.roomsMap[i].image;
+          if (this.roomsMap[i].hasPA > 0) {
+            this.roomhasPA = "Yes";
+          } else {
+            this.roomhasPA = "No";
+          }
+          if (this.roomsMap[i].hasPiano > 0) {
+            this.roomhasPiano = "Yes";
+          } else {
+            this.roomhasPiano = "No";
+          }
         }
+      }
+    },
+    toDryWet(bool) {
+      if (bool) {
+        return "Simulation";
+      } else {
+        return "Dry Sound";
       }
     },
   },
@@ -298,7 +387,6 @@ export default {
       }
     }
 
-
     // delete rooms in sorted Probability Map if they have capacity less than minCapacity
     for (let room in vm.roomsMap) {
       if (vm.roomsMap[room].capacity < vm.minCapacity) {
@@ -332,7 +420,6 @@ export default {
         return b.prob - a.prob;
       }
     );
-
 
     // use sigmond function to squash the sorted probability map
     let squash = function (x) {
@@ -399,6 +486,43 @@ export default {
         },
       });
     }
+    const ctx2 = document.getElementById("probChartMobile");
+    if (ctx2) {
+      const probChart2 = new Chart(ctx2, {
+        type: "bar",
+        data: {
+          labels: Object.values(vm.sortedProbabilityMap).map(function (room) {
+            return room.name;
+          }),
+          datasets: [
+            {
+              label: "Probability",
+              data: Object.values(vm.sortedProbabilityMap).map(function (room) {
+                return room.prob;
+              }),
+              backgroundColor: "rgba(255, 99, 132, 0.2)",
+              borderColor: "rgba(255, 99, 132, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    }
   },
 };
 </script>
+
+<style>
+.explainText {
+  padding-top: 6px;
+  font-size: 15px;
+  opacity: 0.8;
+}
+</style>

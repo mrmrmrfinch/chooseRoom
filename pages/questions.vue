@@ -60,12 +60,9 @@
             <div style="width:100%">
             <v-container>
               <v-row>
-                <v-col cols="2"> </v-col>
-                <v-col cols="8"> <v-slider max="1000" min="1" default="100" v-model="minCapacity"></v-slider></v-col>
-                <v-col cols="2">
-                  <p class="questionSliderPrompt" style="text-align:left">
-                    <span>{{ minCapacity }}</span>
-                    </p></v-col>
+                <v-col cols="2" sm="4"> </v-col>
+                <v-col cols="8" sm="4">
+                  <v-text-field label="Minimum Capacity" v-model="minCapacity" single-line type="number" suffix="people at max" :rules="[ () => minCapacity > 2 || '2 people minimum.']" ></v-text-field></v-col>
               </v-row>
             </v-container>
             </div>
@@ -121,7 +118,7 @@ export default {
   data() {
     return {
       questionsMap: data,
-      minCapacity: 0,
+      minCapacity: 2,
     };
   },
 
@@ -161,6 +158,10 @@ export default {
         } else {
           unansweredString += ", " + unanswered[i];
         }
+      }
+      // check if minCapacity is valid.
+      if (this.minCapacity < 2) {
+        this.minCapacity = 2;
       }
       // if not all answered, alert the user.
       if (!allAnswered) {
