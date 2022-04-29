@@ -19,8 +19,10 @@
         >
           An Acoustically-Accurate<br />Room Selector Tool.
         </h1>
-        <p style="color: black; padding-bottom: 20px">
-          A Project from AME292, 2022 Spring, University of Rochester.
+        <p style="color: black; padding-bottom: 20px;padding-top:20px;line-height:20px">
+          A Project from Acoustics Portfolio (AME 292) at University of Rochester.
+          <br />
+          Visit our <a href="http://acousticsportfolio.digitalscholar.rochester.edu/ch/">wordpress website</a> for an in-depth look at our process.
         </p>
         <v-btn elevation="2" class="btnMedia" x-large onclick="window.location='/questions'">
           Get Started</v-btn

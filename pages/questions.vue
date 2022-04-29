@@ -2,7 +2,7 @@
   <v-app>
     <!-- Sizes your content based upon application components -->
     <v-main class="appMain">
-      <div class='ripple-background' style="position:fixed;top:100%;  z-index:3;">
+      <div class='ripple-background' style="position:fixed;top:100%;  z-index:1;">
         <div class='circle xxlarge shade1'></div>
         <div class='circle xlarge shade2'></div>
         <div class='circle large shade3'></div>
@@ -16,7 +16,8 @@
         <h1 >Answer these questions to help us better understand your needs.</h1>
         </v-container>
         <!-- would automatically bind to questions -->
-        <div class="questions">
+        <div class="questions" style="position:absolute;z-index:100">
+          <p class="questionSubtitle" style="padding-top:50px">To understand why we are asking these questions, visit <a href="http://acousticsportfolio.digitalscholar.rochester.edu/ch/">our wordpress website</a>.</p>
         <div class="questionCard" v-for="(item, index) in questionsMap" :key="index">
           <p class="questionIndex">Question {{ index + 1 }} / {{questionsMap.length + 1}}</p>
           <p class="questionTitle"> {{ item.title }}</p>
@@ -53,7 +54,7 @@
 
         <div class="questionCard" >
           <p class="questionIndex">Question {{ questionsMap.length + 1 }} / {{questionsMap.length + 1}}</p>
-          <p class="questionTitle">How many people at max would be in the room?</p>
+          <p class="questionTitle">How many people at maximum would be in the room?</p>
           <p class="questionSubtitle">
             We need this information to filter out rooms that are too small.
           </p>
@@ -72,8 +73,7 @@
             <v-container style="text-align:center;margin-bottom:30px;">
               <div style="display:flex; justify-content:center; width:100%">
               <h1 style="max-width:600px">
-                How much does these questions matter in your decision making
-                process?
+                How much does each question matter to you?
               </h1>
               </div>
             </v-container>
@@ -82,8 +82,8 @@
                 <v-col cols="4" md="2"></v-col>
                 <v-col cols="8" md="10">
               <div style="font-size:12px">
-                <span style="float:left;text-align:center">Not<br />Really</span>
-                <span style="float:right;text-align:center">S U P E R<br />Important</span>
+                <span style="float:left;text-align:center">Not<br />Important</span>
+                <span style="float:right;text-align:center">Very<br />Important</span>
               </div>
                 </v-col>
               </v-row>
@@ -260,7 +260,8 @@ body {
   }
 
   .pageTitle {
-    position: fixed;
+    position: absolute;
+    z-index: 999;
     top: 20px;
     left: 30px;
     height: 100px;

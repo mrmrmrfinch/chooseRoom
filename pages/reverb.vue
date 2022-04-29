@@ -5,11 +5,11 @@
       style="background-color: #3399ff; padding-bottom: 30px"
     >
       <!-- Provides the application the proper gutter -->
-      <v-btn depressed href="/"> back to home and redo the test </v-btn>
+      <v-btn depressed href="/"> back to home and retake the quiz </v-btn>
       <v-container style="text-align: center; color: white; padding-top: 40px">
-        <h1>We think the best room for you is {{ bestRoom }}.</h1>
+        <h1>The best room for you is {{ bestRoom }}.</h1>
         <p>
-          The next best two is {{ nextBestRoom }} ({{ nextBestProb }}% less
+          We think the next best options are {{ nextBestRoom }} ({{ nextBestProb }}% less
           likely) and {{ nextNextBestRoom }} ({{ nextNextBestRoomProb }}% less
           likely).
           <a href="#probDiv" style="color: white">
@@ -22,12 +22,11 @@
           elevation="10"
           style="padding: 30px; border-radius: 10px; min-height: 450px"
         >
-          <h3>{{ bestRoom }}, and all other rooms' information are here.</h3>
+          <h3>Information about {{ bestRoom }} and all other venues are here.</h3>
           <v-row>
             <v-col cols="12" sm="8">
               <p class="explainText">
-                Although we would recommend {{ bestRoom }}, feel free to check
-                all rooms' data.
+                Although we would recommend {{ bestRoom }}, feel free to select any room from the dropdown menu to learn about it. See our <a href="http://acousticsportfolio.digitalscholar.rochester.edu/ch/">wordpress website</a> for references.
               </p>
             </v-col>
             <v-col cols="12" sm="4">
@@ -68,6 +67,8 @@
                 </v-card>
               </v-col>
             </v-row>
+            <v-divider style="margin-bottom: 20px"></v-divider>
+            <p style="font-size:15px">To reserve a room, please visit the University of Rochester’s <a href="https://www.calendar.rochester.edu/">Event Management Service website</a></p>.
           </v-container>
           <v-container
             fluid
@@ -81,15 +82,11 @@
 
       <v-container style="width: 90%; margin-left: 5%">
         <v-card elevation="10" style="padding: 30px; border-radius: 10px">
-          <h3>You could hear how the rooms sound here.</h3>
+          <h3>You could hear how the venues sound here.</h3>
           <v-row>
             <v-col cols="12" sm="8">
               <p class="explainText">
-                We are using Web Audio to convolve the room's impulse response
-                directly with the dry audio files that we provided to help you
-                get a sense of how the room will sound. To know more about how
-                we collected the impulse responses and what they mean, please
-                check out our <a href="">project writeup</a>.
+                We are using Web Audio API to convolve a venue's impulse response with dry audio files. To learn more about how we collected the impulse responses and what they mean, please visit our <a href="http://acousticsportfolio.digitalscholar.rochester.edu/ch/">project website</a>.
               </p>
             </v-col>
             <v-col cols="12" sm="4">
@@ -107,7 +104,7 @@
               <v-select
                 :items="drySoundsArray"
                 @change="onAudioFileChange"
-                label="Select a dry sound to try"
+                label="Select a dry sound"
                 solo
               ></v-select>
             </v-col>
@@ -116,7 +113,7 @@
               <v-select
                 :items="IRArray"
                 @change="onIRFileChange"
-                label="Select a room to try"
+                label="Select a venue"
                 solo
               ></v-select>
             </v-col>
@@ -127,7 +124,7 @@
                 v-on:click="togglePlay"
                 style="width: 100%; margin-top: -30px; height: 46px"
               >
-                Toggle Play</v-btn
+                Play/Pause</v-btn
               >
             </v-col>
           </v-row>
@@ -135,17 +132,9 @@
       </v-container>
       <v-container style="width: 90%; margin-left: 5%" id="probDiv">
         <v-card elevation="10" style="padding: 30px; border-radius: 10px">
-          <h3>Here's your probability chart.</h3>
+          <h3>Here's your venue probability chart.</h3>
           <p class="explainText">
-            The chart is calculated based on weights of each choice and
-            properties of each room. We squash everything using tanh and sigmoid
-            functions, then normalize the largest value to be one. If a room has
-            a value of 1, it means it is the best room for you. If you notice
-            some of the rooms have a very low probability, it's likely because
-            they have a smaller capacity than the maximum number of people that
-            will be present for your activity. To know more about how we
-            calculated the probabilities, please check out our
-            <a href="">project writeup</a>.
+            This chart is calculated based on the properties of each room and weights assigned to each question. If a performance space has a value of 1, it is the best option for you. If a space has a very low probability, it is likely because its capacity is too small for your needs. To learn more about how the probabilities were calculated, please visit our <a href="http://acousticsportfolio.digitalscholar.rochester.edu/ch/">project website</a>.
           </p>
           <div style="padding: 30px">
             <canvas

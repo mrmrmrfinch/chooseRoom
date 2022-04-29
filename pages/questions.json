@@ -2,8 +2,8 @@
     {
         "type": "multipleChoice",
         "title": "What will you be performing?",
-        "shortTitle": "Perform Type",
-        "subtitle": "We use 'clarity' as to measure how suitable each performance content should be used in a room.",
+        "shortTitle": "Performance Type",
+        "subtitle": "We use a ‘clarity’ measure to determine which performance type is best suited to a room.",
         "choices": [
             {
                 "title": "Speech/Theater",
@@ -29,9 +29,9 @@
 
     {
         "type": "slider",
-        "title": "Would you prefer a more dry or wet sounding room?",
+        "title": "Would you prefer a room that sounds more wet or more dry?",
         "shortTitle": "Dry/Wet",
-        "subtitle": "'Dry' and 'Wet' are measured using T20.",
+        "subtitle": "Wet means more reverberation sound and dry means little to no reverberation sound. We use a ‘T20’ measure to assess this characteristic.",
         "negativeChoice": {
             "title": "Dry",
             "icon": "mic_off"
@@ -47,9 +47,9 @@
 
     {
         "type": "slider",
-        "title": "Would you perfer a room with large or small capacity?",
-        "shortTitle": "Large/Small capacity",
-        "subtitle": "We link this value to capacity of the room.",
+        "title": "Would you perfer a larger or a smaller room?",
+        "shortTitle": "Large/Small Room Size",
+        "subtitle": "We link this value to the listed capacity of the room.",
         "negativeChoice": {
             "title": "Small",
             "icon": "zoom_out"
@@ -83,7 +83,7 @@
 
     {
         "type": "slider",
-        "title": "How much do you need a PA?",
+        "title": "How much do you need a PA system?",
         "shortTitle": "PA",
         "subtitle": "We link this value to whether a room has a PA System or not.",
         "negativeChoice": {
