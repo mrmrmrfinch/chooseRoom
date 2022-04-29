@@ -154,6 +154,13 @@
           </div>
         </v-card>
       </v-container>
+      <v-container style="margin-top:20px;margin-bottom:20px;color:white">
+        <p style="font-weight:800; font-size:25px">References</p>
+        <p>[1] References
+          <br />
+          [2] References
+        </p>
+      </v-container>
     </v-app>
   </v-main>
 </template>

@@ -8,6 +8,10 @@
         "url": "bassoon_As2_phrase_mezzo-forte_tenuto.mp3"
     },
     {
+        "name": "Test Guitar",
+        "url":"test_guitar.wav"
+    },
+    {
         "name": "Male Speech",
         "url": "MaleSpeech_dry_2.wav"
     },

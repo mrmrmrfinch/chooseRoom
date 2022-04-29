@@ -12,9 +12,9 @@
     },
     {
         "name": "Sloan Performing Arts Center",
-        "IRurl": "sloan.wav",
+        "IRurl": "sloan_IR.wav",
         "clarity": 0.9891,
-        "t20": 1.33,
+        "t20": 0.9492,
         "capacity": 142,
         "hasPiano": -1,
         "hasPA": 1,
