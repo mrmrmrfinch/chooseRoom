@@ -515,6 +515,8 @@ export default {
         },
       });
     }
+
+    vm.onRoomChange(vm.bestRoom);
   },
 };
 </script>
