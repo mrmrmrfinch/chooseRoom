@@ -9,9 +9,11 @@
       <v-container style="text-align: center; color: white; padding-top: 40px">
         <h1>The best room for you is {{ bestRoom }}.</h1>
         <p>
-          We think the next best options are {{ nextBestRoom }} ({{ nextBestProb }}% less
-          likely) and {{ nextNextBestRoom }} ({{ nextNextBestRoomProb }}% less
-          likely).
+          We think the next best options are {{ nextBestRoom }} ({{
+            nextBestProb
+          }}% less likely) and {{ nextNextBestRoom }} ({{
+            nextNextBestRoomProb
+          }}% less likely).
           <a href="#probDiv" style="color: white">
             Check our your probability for each room!</a
           >
@@ -22,11 +24,19 @@
           elevation="10"
           style="padding: 30px; border-radius: 10px; min-height: 450px"
         >
-          <h3>Information about {{ bestRoom }} and all other venues are here.</h3>
+          <h3>
+            Information about {{ bestRoom }} and all other venues are here.
+          </h3>
           <v-row>
             <v-col cols="12" sm="8">
               <p class="explainText">
-                Although we would recommend {{ bestRoom }}, feel free to select any room from the dropdown menu to learn about it. See our <a href="http://acousticsportfolio.digitalscholar.rochester.edu/ch/">wordpress website</a> for references.
+                Although we would recommend {{ bestRoom }}, feel free to select
+                any room from the dropdown menu to learn about it. See our
+                <a
+                  href="http://acousticsportfolio.digitalscholar.rochester.edu/ch/"
+                  >wordpress website</a
+                >
+                for references.
               </p>
             </v-col>
             <v-col cols="12" sm="4">
@@ -68,7 +78,13 @@
               </v-col>
             </v-row>
             <v-divider style="margin-bottom: 20px"></v-divider>
-            <p style="font-size:15px">To reserve a room, please visit the University of Rochester’s <a href="https://www.calendar.rochester.edu/">Event Management Service website</a></p>.
+            <p style="font-size: 15px">
+              To reserve a room, please visit the University of Rochester’s
+              <a href="https://www.calendar.rochester.edu/"
+                >Event Management Service website</a
+              >
+            </p>
+            .
           </v-container>
           <v-container
             fluid
@@ -86,7 +102,14 @@
           <v-row>
             <v-col cols="12" sm="8">
               <p class="explainText">
-                We are using Web Audio API to convolve a venue's impulse response with dry audio files. To learn more about how we collected the impulse responses and what they mean, please visit our <a href="http://acousticsportfolio.digitalscholar.rochester.edu/ch/">project website</a>.
+                We are using Web Audio API to convolve a venue's impulse
+                response with dry audio files. To learn more about how we
+                collected the impulse responses and what they mean, please visit
+                our
+                <a
+                  href="http://acousticsportfolio.digitalscholar.rochester.edu/ch/"
+                  >project website</a
+                >.
               </p>
             </v-col>
             <v-col cols="12" sm="4">
@@ -134,7 +157,15 @@
         <v-card elevation="10" style="padding: 30px; border-radius: 10px">
           <h3>Here's your venue probability chart.</h3>
           <p class="explainText">
-            This chart is calculated based on the properties of each room and weights assigned to each question. If a performance space has a value of 1, it is the best option for you. If a space has a very low probability, it is likely because its capacity is too small for your needs. To learn more about how the probabilities were calculated, please visit our <a href="http://acousticsportfolio.digitalscholar.rochester.edu/ch/">project website</a>.
+            This chart is calculated based on the properties of each room and
+            weights assigned to each question. If a performance space has a
+            value of 1, it is the best option for you. If a space has a very low
+            probability, it is likely because its capacity is too small for your
+            needs. To learn more about how the probabilities were calculated,
+            please visit our
+            <a href="http://acousticsportfolio.digitalscholar.rochester.edu/ch/"
+              >project website</a
+            >.
           </p>
           <div style="padding: 30px">
             <canvas
@@ -154,11 +185,50 @@
           </div>
         </v-card>
       </v-container>
-      <v-container style="margin-top:20px;margin-bottom:20px;color:white">
-        <p style="font-weight:800; font-size:25px">References</p>
-        <p>[1] References
+      <v-container style="margin-top: 20px; margin-bottom: 20px; color: white">
+        <p style="font-weight: 800; font-size: 25px">References</p>
+        <p>
+          [1] “Overview,” About Us: The Interfaith Chapel: University of Rochester.
+          [Online]. Available: https://www.rochester.edu/chapel/about/index.html
           <br />
-          [2] References
+          [2] “The Sloan Performing Arts Center,” University Advancement:
+          University of Rochester [Online]. Available:
+          https://www.rochester.edu/advancement/the-sloan-performing-arts-center/
+          <br />
+          [3] “Strong Auditorium,” Locations : Event and Classroom Management :
+          University of Rochester. [Online]. Available:
+          https://www.rochester.edu/college/ecm/locations/strong.html.
+          [Accessed: 04-May-2022].
+          <br />
+          [4] “Wilson Commons,” Wilson Commons Student
+          Activities: Student Life Spaces. [Online]. Available:
+          https://rochester.edu/college/wcsa/student-life-spaces/wilson-commons.html.
+          [Accessed: 04-May-2022]. 
+          <br />
+          [5] Event and Classroom Management, University of
+          Rochester. Upper Strong - Stage (Locations) [Online]. Available:
+          https://www.rochester.edu/college/ecm/locations/location-photos/strong-upper-b.jpg
+          <br />
+          [6] Event and Classroom Management, University of Rochester. Upper Strong
+          - Audience (Locations) [Online]. Available:
+          https://www.rochester.edu/college/ecm/locations/location-photos/strong-upper-a.jpg
+          <br />
+          [7] International Theatre Program, University of Rochester. Todd Theatre
+          Images [Online]. Available:
+          https://www.sas.rochester.edu/theatre/resources/todd-images.html
+          <br />
+          [8] The Interfaith Chapel, University of Rochester. Reservations [Online].
+          Available: https://www.rochester.edu/chapel/reservations/index.html 
+          <br />
+          [9] G. Pirker, M. Wohlmayr, S. Petrik, and F. Pernkopf, “A pitch tracking
+          corpus with evaluation on multipitch tracking scenario,” Interspeech
+          2011, 2011. 
+          <br /><br />
+          Strong chapel IRs courtesy of:
+          http://acousticsportfolio.digitalscholar.rochester.edu/alex-alex-jiwei/
+          <br />
+          May room IRs courtesy of:
+          http://acousticsportfolio.digitalscholar.rochester.edu/projects/acoustics-a-cappella-preference/
         </p>
       </v-container>
     </v-app>
@@ -231,18 +301,21 @@ export default {
   methods: {
     togglePlay() {
       // if Web Audio is not initialized, initialize it
-      Tone.start();
-      Tone.context.lookAhead = 0;
-      Tone.context.resume();
       if (this.audioURL && this.IRURL) {
+        // reset the convolver, update the IR URL
+        this.convolver.url = this.IRURL;
+        // reset player
+        this.player.disconnect(0);
         this.player.connect(this.convolver);
         this.convolver.toMaster();
         // if audioPlayer is started, stop it
         if (this.player.state === "started") {
           this.player.stop();
+          Tone.Master.mute = true;
           console.log("stopped");
         } else {
           this.player.start();
+          Tone.Master.mute = false;
         }
       } else {
         console.log("no file selected");
@@ -284,8 +357,13 @@ export default {
       }
     },
     onIRFileChange(fileName) {
-      Tone.start();
-      Tone.context.lookAhead = 0;
+      // stop audio on change if the audio is playing.
+      if (this.player !== null) {
+        this.player.stop();
+        // mute master
+        Tone.Master.mute = true;
+      }
+
       let fileURL = "";
 
       // get fileURL from fileName in roomsMap

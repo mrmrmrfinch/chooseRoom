@@ -8,7 +8,7 @@
         "hasPiano": 1,
         "hasPA": 0,
         "description": "Wilson Commons is the student union on River Campus with many services including The Commons Food Court, Starbucks, Blimpie Subs, The Hive Game Room, Common Connection Information Desk, Mane Attraction Hair Salon, and Hartnett Art Gallery. The Common Market, a one-stop shop for bulk food, candy and tickets to campus events, is also located in the building. In addition to several multi-purpose rooms and conference rooms, Wilson Commons also houses several units of the Office of the Dean of Students including Wilson Commons Student Activities, Fraternity & Sorority Affairs, Parent and Family Relations, Intercultural Center, and the Center for Student Conflict Management.",
-        "image": "https://rochester.edu/college/wcsa/assets/images/buildings-exterior/wilson-commons-exterior.jpg"
+        "image": "roomImg/mayRoom.jpg"
     },
     {
         "name": "Sloan Performing Arts Center",
@@ -19,28 +19,28 @@
         "hasPiano": -1,
         "hasPA": 1,
         "description": "Dedicated to theater, dance, and music, the three-story Sloan Center will house a 200-seat black box theater, an atrium, a café, a green room, a scene shop, a costume shop, a box office, dressing rooms, a conditioning room, and more. Each space will encourage creative expression, skill building, and community activity.",
-        "image": "https://www.rochester.edu/newscenter/wp-content/uploads/2021/08/fea-sloan-performing-arts-center-exterior-1.jpg"
+        "image": "roomImg/sloan.jpg"
     },
     {
         "name": "Upper Strong",
-        "IRurl": "upperStrong.wav",
+        "IRurl": "strong_IR.wav",
         "clarity": 8.6048,
         "t20": 1.6331,
         "capacity": 960,
         "hasPiano": 1,
         "hasPA": 1,
         "description": "Named for Col. Henry Alvah Strong, 1838-1919, a president of Eastman Kodak Company. The building was a gift from Hattie M. Strong, 1864-1950, a philanthropist and his second wife, and her son, L. Corrin Strong, in memory of their husband and father. Dedicated in 1930 with other original River Campus buildings.",
-        "image": "https://www.rochester.edu/college/ecm/locations/location-photos/strong_aud_building.jpg"
+        "image": "roomImg/strongUpper.jpg"
     },
     {
         "name": "Chapel",
-        "IRurl": "chapel.wav",
+        "IRurl": "chapel_IR.wav",
         "clarity": 1.0239,
         "t20": 1.8732,
         "capacity": 640,
         "hasPiano": 1,
         "hasPA": 1,
         "description": "The University took a pioneering step forward when the Interfaith Chapel was built in 1970. At that time, few schools could boast a facility intended to be a religious gathering place for all people. The Interfaith Chapel is a place for people to worship in their particular faith and a place where people of different faiths, or no religious tradition at all, can share in dialogue, worship, and interfaith education. Our multi-faith community and our interfaith engagements contribute significantly to the rich diversity that is the University of Rochester experience.",
-        "image": "https://www.rochester.edu/chapel/assets/images/Interfaith_Chapel_482345.jpg"
+        "image": "roomImg/chapel.jpg"
     }
 ]
