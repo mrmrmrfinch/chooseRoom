@@ -2,8 +2,8 @@
     {
         "name": "May Room",
         "IRurl": "mayroom_IR.wav",
-        "clarity": 1.97,
-        "t20": 3.6452,
+        "clarity": 3.6452,
+        "t20": 1.3292,
         "capacity": 224,
         "hasPiano": 1,
         "hasPA": 0,
@@ -24,8 +24,8 @@
     {
         "name": "Upper Strong",
         "IRurl": "upperStrong.wav",
-        "clarity": 1.0056,
-        "t20": 1.33,
+        "clarity": 8.6048,
+        "t20": 1.6331,
         "capacity": 960,
         "hasPiano": 1,
         "hasPA": 1,
@@ -35,8 +35,8 @@
     {
         "name": "Chapel",
         "IRurl": "chapel.wav",
-        "clarity": 0.2545,
-        "t20": 1.33,
+        "clarity": 1.0239,
+        "t20": 1.8732,
         "capacity": 640,
         "hasPiano": 1,
         "hasPA": 1,
